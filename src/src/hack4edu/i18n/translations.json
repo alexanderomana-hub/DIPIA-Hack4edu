@@ -1,0 +1,570 @@
+{
+  "es": {
+    "common": {
+      "back": "Volver",
+      "select_image": "Seleccionar Imagen",
+      "analyze": "Analizar",
+      "analyzing": "Analizando...",
+      "error": "Error",
+      "success": "Éxito",
+      "loading": "Cargando...",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar",
+      "close": "Cerrar"
+    },
+    "tabs": {
+      "raw_data": "Datos Crudos",
+      "classification": "Clasificación",
+      "knowledge": "Base de Conocimiento",
+      "action_plan": "Plan de Acción"
+    },
+    "home": {
+      "subtitle": "Bienvenido al sistema de diagnóstico de patologías",
+      "drone": {
+        "title": "Visor de Dron",
+        "subtitle": "Monitoreo en tiempo real con IA"
+      },
+      "materials": {
+        "title": "Gestión de Materiales",
+        "subtitle": "Administra tu inventario"
+      },
+      "analysis": {
+        "title": "Análisis de Imágenes",
+        "subtitle": "Detecta patologías con IA"
+      },
+      "buttons": {
+        "tutor": "Tutor",
+        "logout": "Salir"
+      }
+    },
+    "materials": {
+      "title": "Gestión de Materiales",
+      "add": "Agregar Material",
+      "empty_title": "Sin materiales",
+      "empty_desc": "Agrega tu primer material para administrar tu inventario.",
+      "table": {
+        "material": "Material",
+        "supplier": "Proveedor",
+        "price": "Precio",
+        "unit": "Unidad",
+        "actions": "Acciones"
+      },
+      "actions": {
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "back": "Volver al Panel"
+      },
+      "modal": {
+        "add_title": "Agregar Material",
+        "edit_title": "Editar Material",
+        "labels": {
+          "material": "Material",
+          "supplier": "Proveedor",
+          "price": "Precio",
+          "unit": "Unidad"
+        },
+        "placeholders": {
+          "material": "Nombre del material",
+          "supplier": "Nombre del proveedor",
+          "price": "0.00",
+          "unit": "kg, m, pza, etc."
+        },
+        "buttons": {
+          "cancel": "Cancelar",
+          "save": "Guardar",
+          "update": "Actualizar"
+        },
+        "confirm_delete": "¿Estás seguro de que quieres eliminar este material?"
+      }
+    },
+    "image": {
+      "title": "Análisis de Imágenes con IA",
+      "back": "Volver",
+      "select_image": "Seleccionar Imagen",
+      "analyze": "Analizar con IA",
+      "analyzing": "Analizando...",
+      "clear": "Limpiar",
+      "results": "Resultados del análisis",
+      "summary": {
+        "total": "Total de detecciones:",
+        "size": "Tamaño de imagen:"
+      },
+      "detected": "Objetos detectados:",
+      "no_detections": "No se detectaron objetos en la imagen",
+      "file": "Archivo:",
+      "size": "Tamaño:"
+    },
+    "raw_data": {
+      "title": "Datos Crudos (IA N°1)",
+      "detections": "Detecciones",
+      "confidence": "Confianza",
+      "position": "Posición",
+      "class_id": "ID de Clase",
+      "total_detections": "Total de detecciones",
+      "image_size": "Tamaño de imagen"
+    },
+    "classification": {
+      "title": "Clasificación (IA N°2)",
+      "type": "Tipo",
+      "severity": "Severidad",
+      "confidence": "Confianza",
+      "morphological_analysis": "Análisis Morfológico"
+    },
+    "knowledge": {
+      "title": "Base de Conocimiento",
+      "topics": "Temas",
+      "definition": "Definición",
+      "causes": "Causas",
+      "severity": "Severidad",
+      "action_required": "Acción Requerida",
+      "priority": "Prioridad",
+      "investigation_steps": "Pasos de Investigación",
+      "solutions": "Soluciones",
+      "videos": "Videos Educativos",
+      "technical_terms": "Términos Técnicos"
+    },
+    "action_plan": {
+      "title": "Plan de Acción - El Reto",
+      "step1": {
+        "title": "Paso 1: Triaje (Prioridad)",
+        "options": {
+          "high": "Alto",
+          "medium": "Medio",
+          "low": "Bajo"
+        }
+      },
+      "step2": {
+        "title": "Paso 2: Plan de Investigación",
+        "options": {
+          "review_plans": "Revisar planos",
+          "repair_now": "Reparar ya",
+          "consult_specialist": "Consultar especialista"
+        }
+      },
+      "step3": {
+        "title": "Paso 3: Concepto de Solución",
+        "options": {
+          "structural": "Estructural",
+          "cosmetic": "Cosmética",
+          "preventive": "Preventiva"
+        }
+      },
+      "notes": {
+        "title": "Notas Adicionales",
+        "placeholder": "Escribe tus observaciones técnicas aquí..."
+      },
+      "generate_report": "Generar Reporte de Campo (PDF)"
+    },
+    "challenge": {
+      "feedback": {
+        "correct": "¡Correcto!",
+        "incorrect": "Incorrecto. Intenta de nuevo.",
+        "partial": "Parcialmente correcto. Considera otras opciones."
+      }
+    },
+    "tutor": {
+      "chat": {
+        "title": "Chat con el Tutor",
+        "subtitle": "Pregunta tus dudas sobre el diagnóstico",
+        "placeholder": "Escribe tu pregunta aquí...",
+        "send": "Enviar",
+        "response": "Respuesta del Tutor"
+      },
+      "classroom": {
+        "stage": {
+          "introduction": "Introducción",
+          "overview": "Descripción General",
+          "objectives": "Objetivos",
+          "prerequisites": "Requisitos Previos",
+          "materials": "Materiales Necesarios",
+          "steps": "Pasos de la Clase",
+          "conclusion": "Conclusión",
+          "gallery": "Galería",
+          "documents": "Documentos",
+          "cases": "Casos"
+        },
+        "section": {
+          "introduction": "Introducción",
+          "overview": "Descripción General",
+          "objectives": "Objetivos",
+          "prerequisites": "Requisitos Previos",
+          "materials": "Materiales Necesarios",
+          "steps": "Pasos de la Clase",
+          "conclusion": "Conclusión",
+          "gallery": {
+            "empty_title": "No hay imágenes en la galería",
+            "empty_desc": "Agrega tu primera imagen para mostrar en la galería."
+          },
+          "documents": {
+            "empty_title": "No hay documentos en la sección",
+            "empty_desc": "Agrega tu primer documento para mostrar en la sección."
+          }
+        }
+      }
+    },
+    "quiz": {
+      "title": "Quiz",
+      "start": "Iniciar Quiz",
+      "question": "Pregunta",
+      "answer": "Respuesta",
+      "next": "Siguiente",
+      "finish": "Finalizar Quiz",
+      "score": "Puntuación",
+      "total_questions": "Total de preguntas",
+      "correct_answers": "Respuestas correctas",
+      "incorrect_answers": "Respuestas incorrectas",
+      "no_questions": "No hay preguntas disponibles"
+    },
+    "glossary": {
+      "title": "Glosario",
+      "term": "Término",
+      "definition": "Definición",
+      "add_term": "Agregar Término",
+      "edit_term": "Editar Término",
+      "delete_term": "Eliminar Término",
+      "add_definition": "Agregar Definición",
+      "edit_definition": "Editar Definición",
+      "delete_definition": "Eliminar Definición",
+      "empty_title": "Sin términos en el glosario",
+      "empty_desc": "Agrega tu primer término para empezar a usar el glosario."
+    },
+    "pdf": {
+      "generate": "Generar PDF",
+      "download": "Descargar PDF",
+      "preview": "Vista previa del PDF",
+      "save": "Guardar PDF",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar",
+      "close": "Cerrar"
+    }
+  },
+  "en": {
+    "common": {
+      "back": "Back",
+      "select_image": "Select Image",
+      "analyze": "Analyze",
+      "analyzing": "Analyzing...",
+      "error": "Error",
+      "success": "Success",
+      "loading": "Loading...",
+      "save": "Save",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "close": "Close"
+    },
+    "tabs": {
+      "raw_data": "Raw Data",
+      "classification": "Classification",
+      "knowledge": "Knowledge Base",
+      "action_plan": "Action Plan"
+    },
+    "home": {
+      "subtitle": "Welcome to the pathology diagnosis system",
+      "drone": {
+        "title": "Drone Viewer",
+        "subtitle": "Real-time monitoring with AI"
+      },
+      "materials": {
+        "title": "Material Management",
+        "subtitle": "Manage your inventory"
+      },
+      "analysis": {
+        "title": "Image Analysis",
+        "subtitle": "Detect pathologies with AI"
+      },
+      "buttons": {
+        "tutor": "Tutor",
+        "logout": "Logout"
+      }
+    },
+    "materials": {
+      "title": "Material Management",
+      "add": "Add Material",
+      "empty_title": "No materials",
+      "empty_desc": "Add your first material to start managing your inventory.",
+      "table": {
+        "material": "Material",
+        "supplier": "Supplier",
+        "price": "Price",
+        "unit": "Unit",
+        "actions": "Actions"
+      },
+      "actions": {
+        "edit": "Edit",
+        "delete": "Delete",
+        "back": "Back to Dashboard"
+      },
+      "modal": {
+        "add_title": "Add Material",
+        "edit_title": "Edit Material",
+        "labels": {
+          "material": "Material",
+          "supplier": "Supplier",
+          "price": "Price",
+          "unit": "Unit"
+        },
+        "placeholders": {
+          "material": "Material name",
+          "supplier": "Supplier name",
+          "price": "0.00",
+          "unit": "kg, m, pc, etc."
+        },
+        "buttons": {
+          "cancel": "Cancel",
+          "save": "Save",
+          "update": "Update"
+        },
+        "confirm_delete": "Are you sure you want to delete this material?"
+      }
+    },
+    "image": {
+      "title": "AI Image Analysis",
+      "back": "Back",
+      "select_image": "Select Image",
+      "analyze": "Analyze with AI",
+      "analyzing": "Analyzing...",
+      "clear": "Clear",
+      "results": "Analysis Results",
+      "summary": {
+        "total": "Total detections:",
+        "size": "Image size:"
+      },
+      "detected": "Detected Objects:",
+      "no_detections": "No objects detected in the image",
+      "file": "File:",
+      "size": "Size:"
+    },
+    "raw_data": {
+      "title": "Raw Data (AI N°1)",
+      "detections": "Detections",
+      "confidence": "Confidence",
+      "position": "Position",
+      "class_id": "Class ID",
+      "total_detections": "Total detections",
+      "image_size": "Image size"
+    },
+    "classification": {
+      "title": "Classification (AI N°2)",
+      "type": "Type",
+      "severity": "Severity",
+      "confidence": "Confidence",
+      "morphological_analysis": "Morphological Analysis"
+    },
+    "knowledge": {
+      "title": "Knowledge Base",
+      "topics": "Topics",
+      "definition": "Definition",
+      "causes": "Causes",
+      "severity": "Severity",
+      "action_required": "Action Required",
+      "priority": "Priority",
+      "investigation_steps": "Investigation Steps",
+      "solutions": "Solutions",
+      "videos": "Educational Videos",
+      "technical_terms": "Technical Terms"
+    },
+    "action_plan": {
+      "title": "Action Plan - The Challenge",
+      "step1": {
+        "title": "Step 1: Triage (Priority)",
+        "options": {
+          "high": "High",
+          "medium": "Medium",
+          "low": "Low"
+        }
+      },
+      "step2": {
+        "title": "Step 2: Investigation Plan",
+        "options": {
+          "review_plans": "Review plans",
+          "repair_now": "Repair now",
+          "consult_specialist": "Consult specialist"
+        }
+      },
+      "step3": {
+        "title": "Step 3: Solution Concept",
+        "options": {
+          "structural": "Structural",
+          "cosmetic": "Cosmetic",
+          "preventive": "Preventive"
+        }
+      },
+      "notes": {
+        "title": "Additional Notes",
+        "placeholder": "Write your technical observations here..."
+      },
+      "generate_report": "Generate Field Report (PDF)"
+    },
+    "challenge": {
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "Incorrect. Try again.",
+        "partial": "Partially correct. Consider other options."
+      }
+    },
+    "tutor": {
+      "chat": {
+        "title": "Chat with the Tutor",
+        "subtitle": "Ask your questions about the diagnosis",
+        "placeholder": "Write your question here...",
+        "send": "Send",
+        "response": "Tutor's Response"
+      },
+      "classroom": {
+        "stage": {
+          "introduction": "Introduction",
+          "overview": "Overview",
+          "objectives": "Objectives",
+          "prerequisites": "Prerequisites",
+          "materials": "Materials Needed",
+          "steps": "Class Steps",
+          "conclusion": "Conclusion",
+          "gallery": "Gallery",
+          "documents": "Documents",
+          "cases": "Cases"
+        },
+        "section": {
+          "introduction": "Introduction",
+          "overview": "Overview",
+          "objectives": "Objectives",
+          "prerequisites": "Prerequisites",
+          "materials": "Materials Needed",
+          "steps": "Class Steps",
+          "conclusion": "Conclusion",
+          "gallery": {
+            "empty_title": "No images in the gallery",
+            "empty_desc": "Add your first image to show in the gallery."
+          },
+          "documents": {
+            "empty_title": "No documents in the section",
+            "empty_desc": "Add your first document to show in the section."
+          }
+        }
+      }
+    },
+    "quiz": {
+      "title": "Quiz",
+      "start": "Start Quiz",
+      "question": "Question",
+      "answer": "Answer",
+      "next": "Next",
+      "finish": "Finish Quiz",
+      "score": "Score",
+      "total_questions": "Total Questions",
+      "correct_answers": "Correct Answers",
+      "incorrect_answers": "Incorrect Answers",
+      "no_questions": "No questions available"
+    },
+    "glossary": {
+      "title": "Glossary",
+      "term": "Term",
+      "definition": "Definition",
+      "add_term": "Add Term",
+      "edit_term": "Edit Term",
+      "delete_term": "Delete Term",
+      "add_definition": "Add Definition",
+      "edit_definition": "Edit Definition",
+      "delete_definition": "Delete Definition",
+      "empty_title": "No terms in the glossary",
+      "empty_desc": "Add your first term to start using the glossary."
+    },
+    "pdf": {
+      "generate": "Generate PDF",
+      "download": "Download PDF",
+      "preview": "PDF Preview",
+      "save": "Save PDF",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "close": "Close"
+    }
+  },
+  "pt": {
+    "common": {
+      "back": "Voltar",
+      "select_image": "Selecionar Imagem",
+      "analyze": "Analisar",
+      "analyzing": "Analisando...",
+      "error": "Erro",
+      "success": "Sucesso",
+      "loading": "Carregando...",
+      "save": "Salvar",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar",
+      "close": "Fechar"
+    },
+    "tabs": {
+      "raw_data": "Dados Brutos",
+      "classification": "Classificação",
+      "knowledge": "Base de Conhecimento",
+      "action_plan": "Plano de Ação"
+    },
+    "raw_data": {
+      "title": "Dados Brutos (IA N°1)",
+      "detections": "Detecções",
+      "confidence": "Confiança",
+      "position": "Posição",
+      "class_id": "ID da Classe",
+      "total_detections": "Total de detecções",
+      "image_size": "Tamanho da imagem"
+    },
+    "classification": {
+      "title": "Classificação (IA N°2)",
+      "type": "Tipo",
+      "severity": "Severidade",
+      "confidence": "Confiança",
+      "morphological_analysis": "Análise Morfológica"
+    },
+    "knowledge": {
+      "title": "Base de Conhecimento",
+      "definition": "Definição",
+      "causes": "Causas",
+      "severity": "Severidade",
+      "action_required": "Ação Necessária",
+      "priority": "Prioridade",
+      "investigation_steps": "Passos de Investigação",
+      "solutions": "Soluções",
+      "videos": "Vídeos Educativos",
+      "technical_terms": "Termos Técnicos"
+    },
+    "action_plan": {
+      "title": "Plano de Ação - O Desafio",
+      "step1": {
+        "title": "Passo 1: Triagem (Prioridade)",
+        "options": {
+          "high": "Alto",
+          "medium": "Médio",
+          "low": "Baixo"
+        }
+      },
+      "step2": {
+        "title": "Passo 2: Plano de Investigação",
+        "options": {
+          "review_plans": "Revisar planos",
+          "repair_now": "Reparar agora",
+          "consult_specialist": "Consultar especialista"
+        }
+      },
+      "step3": {
+        "title": "Passo 3: Conceito de Solução",
+        "options": {
+          "structural": "Estrutural",
+          "cosmetic": "Cosmética",
+          "preventive": "Preventiva"
+        }
+      },
+      "notes": {
+        "title": "Notas Adicionais",
+        "placeholder": "Escreva suas observações técnicas aqui..."
+      },
+      "generate_report": "Gerar Relatório de Campo (PDF)"
+    },
+    "challenge": {
+      "feedback": {
+        "correct": "Correto!",
+        "incorrect": "Incorreto. Tente novamente.",
+        "partial": "Parcialmente correto. Considere outras opções."
+      }
+    }
+  }
+}

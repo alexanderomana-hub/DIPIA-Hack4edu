@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#202020"/>
+  <path d="M120 400 L200 340 L240 360 L300 300 L340 320 L400 260 L460 280 L520 220 L580 240 L640 180" stroke="#FFD700" stroke-width="5" fill="none"/>
+  <text x="24" y="470" fill="#ddd" font-family="Arial" font-size="20">Caso — Grieta Escalonada</text>
+</svg>
+

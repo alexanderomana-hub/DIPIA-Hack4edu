@@ -1,0 +1,266 @@
+{
+  "es": {
+    "common": {
+      "back": "Volver",
+      "select_image": "Seleccionar Imagen",
+      "analyze": "Analizar",
+      "analyzing": "Analizando...",
+      "error": "Error",
+      "success": "Éxito",
+      "loading": "Cargando...",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar",
+      "close": "Cerrar"
+    },
+    "tabs": {
+      "raw_data": "Datos Crudos",
+      "classification": "Clasificación",
+      "knowledge": "Base de Conocimiento",
+      "action_plan": "Plan de Acción"
+    },
+    "raw_data": {
+      "title": "Datos Crudos (IA N°1)",
+      "detections": "Detecciones",
+      "confidence": "Confianza",
+      "position": "Posición",
+      "class_id": "ID de Clase",
+      "total_detections": "Total de detecciones",
+      "image_size": "Tamaño de imagen"
+    },
+    "classification": {
+      "title": "Clasificación (IA N°2)",
+      "type": "Tipo",
+      "severity": "Severidad",
+      "confidence": "Confianza",
+      "morphological_analysis": "Análisis Morfológico"
+    },
+    "knowledge": {
+      "title": "Base de Conocimiento",
+      "definition": "Definición",
+      "causes": "Causas",
+      "severity": "Severidad",
+      "action_required": "Acción Requerida",
+      "priority": "Prioridad",
+      "investigation_steps": "Pasos de Investigación",
+      "solutions": "Soluciones",
+      "videos": "Videos Educativos",
+      "technical_terms": "Términos Técnicos"
+    },
+    "action_plan": {
+      "title": "Plan de Acción - El Reto",
+      "step1": {
+        "title": "Paso 1: Triaje (Prioridad)",
+        "options": {
+          "high": "Alto",
+          "medium": "Medio",
+          "low": "Bajo"
+        }
+      },
+      "step2": {
+        "title": "Paso 2: Plan de Investigación",
+        "options": {
+          "review_plans": "Revisar planos",
+          "repair_now": "Reparar ya",
+          "consult_specialist": "Consultar especialista"
+        }
+      },
+      "step3": {
+        "title": "Paso 3: Concepto de Solución",
+        "options": {
+          "structural": "Estructural",
+          "cosmetic": "Cosmética",
+          "preventive": "Preventiva"
+        }
+      },
+      "notes": {
+        "title": "Notas Adicionales",
+        "placeholder": "Escribe tus observaciones técnicas aquí..."
+      },
+      "generate_report": "Generar Reporte de Campo (PDF)"
+    },
+    "challenge": {
+      "feedback": {
+        "correct": "¡Correcto!",
+        "incorrect": "Incorrecto. Intenta de nuevo.",
+        "partial": "Parcialmente correcto. Considera otras opciones."
+      }
+    }
+  },
+  "en": {
+    "common": {
+      "back": "Back",
+      "select_image": "Select Image",
+      "analyze": "Analyze",
+      "analyzing": "Analyzing...",
+      "error": "Error",
+      "success": "Success",
+      "loading": "Loading...",
+      "save": "Save",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "close": "Close"
+    },
+    "tabs": {
+      "raw_data": "Raw Data",
+      "classification": "Classification",
+      "knowledge": "Knowledge Base",
+      "action_plan": "Action Plan"
+    },
+    "raw_data": {
+      "title": "Raw Data (AI N°1)",
+      "detections": "Detections",
+      "confidence": "Confidence",
+      "position": "Position",
+      "class_id": "Class ID",
+      "total_detections": "Total detections",
+      "image_size": "Image size"
+    },
+    "classification": {
+      "title": "Classification (AI N°2)",
+      "type": "Type",
+      "severity": "Severity",
+      "confidence": "Confidence",
+      "morphological_analysis": "Morphological Analysis"
+    },
+    "knowledge": {
+      "title": "Knowledge Base",
+      "definition": "Definition",
+      "causes": "Causes",
+      "severity": "Severity",
+      "action_required": "Action Required",
+      "priority": "Priority",
+      "investigation_steps": "Investigation Steps",
+      "solutions": "Solutions",
+      "videos": "Educational Videos",
+      "technical_terms": "Technical Terms"
+    },
+    "action_plan": {
+      "title": "Action Plan - The Challenge",
+      "step1": {
+        "title": "Step 1: Triage (Priority)",
+        "options": {
+          "high": "High",
+          "medium": "Medium",
+          "low": "Low"
+        }
+      },
+      "step2": {
+        "title": "Step 2: Investigation Plan",
+        "options": {
+          "review_plans": "Review plans",
+          "repair_now": "Repair now",
+          "consult_specialist": "Consult specialist"
+        }
+      },
+      "step3": {
+        "title": "Step 3: Solution Concept",
+        "options": {
+          "structural": "Structural",
+          "cosmetic": "Cosmetic",
+          "preventive": "Preventive"
+        }
+      },
+      "notes": {
+        "title": "Additional Notes",
+        "placeholder": "Write your technical observations here..."
+      },
+      "generate_report": "Generate Field Report (PDF)"
+    },
+    "challenge": {
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "Incorrect. Try again.",
+        "partial": "Partially correct. Consider other options."
+      }
+    }
+  },
+  "pt": {
+    "common": {
+      "back": "Voltar",
+      "select_image": "Selecionar Imagem",
+      "analyze": "Analisar",
+      "analyzing": "Analisando...",
+      "error": "Erro",
+      "success": "Sucesso",
+      "loading": "Carregando...",
+      "save": "Salvar",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar",
+      "close": "Fechar"
+    },
+    "tabs": {
+      "raw_data": "Dados Brutos",
+      "classification": "Classificação",
+      "knowledge": "Base de Conhecimento",
+      "action_plan": "Plano de Ação"
+    },
+    "raw_data": {
+      "title": "Dados Brutos (IA N°1)",
+      "detections": "Detecções",
+      "confidence": "Confiança",
+      "position": "Posição",
+      "class_id": "ID da Classe",
+      "total_detections": "Total de detecções",
+      "image_size": "Tamanho da imagem"
+    },
+    "classification": {
+      "title": "Classificação (IA N°2)",
+      "type": "Tipo",
+      "severity": "Severidade",
+      "confidence": "Confiança",
+      "morphological_analysis": "Análise Morfológica"
+    },
+    "knowledge": {
+      "title": "Base de Conhecimento",
+      "definition": "Definição",
+      "causes": "Causas",
+      "severity": "Severidade",
+      "action_required": "Ação Necessária",
+      "priority": "Prioridade",
+      "investigation_steps": "Passos de Investigação",
+      "solutions": "Soluções",
+      "videos": "Vídeos Educativos",
+      "technical_terms": "Termos Técnicos"
+    },
+    "action_plan": {
+      "title": "Plano de Ação - O Desafio",
+      "step1": {
+        "title": "Passo 1: Triagem (Prioridade)",
+        "options": {
+          "high": "Alto",
+          "medium": "Médio",
+          "low": "Baixo"
+        }
+      },
+      "step2": {
+        "title": "Passo 2: Plano de Investigação",
+        "options": {
+          "review_plans": "Revisar planos",
+          "repair_now": "Reparar agora",
+          "consult_specialist": "Consultar especialista"
+        }
+      },
+      "step3": {
+        "title": "Passo 3: Conceito de Solução",
+        "options": {
+          "structural": "Estrutural",
+          "cosmetic": "Cosmética",
+          "preventive": "Preventiva"
+        }
+      },
+      "notes": {
+        "title": "Notas Adicionais",
+        "placeholder": "Escreva suas observações técnicas aqui..."
+      },
+      "generate_report": "Gerar Relatório de Campo (PDF)"
+    },
+    "challenge": {
+      "feedback": {
+        "correct": "Correto!",
+        "incorrect": "Incorreto. Tente novamente.",
+        "partial": "Parcialmente correto. Considere outras opções."
+      }
+    }
+  }
+}

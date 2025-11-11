@@ -1,0 +1,194 @@
+{
+  "grieta_escalonada": {
+    "title": "Grieta Escalonada",
+    "definition": "Fisura que sigue un patrón escalonado, típica de asentamientos diferenciales en estructuras de mampostería",
+    "causes": [
+      "Asentamiento diferencial del terreno",
+      "Carga excesiva en cimientos",
+      "Variaciones en la humedad del suelo",
+      "Vibraciones del tráfico",
+      "Movimientos sísmicos"
+    ],
+    "severity": "Media-Alta",
+    "action_required": "Evaluación estructural inmediata",
+    "priority": "Alta",
+    "investigation_steps": [
+      "Revisar planos estructurales",
+      "Medir dimensiones de la grieta",
+      "Evaluar estabilidad del terreno",
+      "Consultar con ingeniero estructural"
+    ],
+    "solutions": [
+      "Refuerzo estructural",
+      "Inyección de resina epóxica",
+      "Reconstrucción parcial",
+      "Sistema de monitoreo"
+    ],
+    "videos": [
+      "https://example.com/video_grieta_escalonada_1",
+      "https://example.com/video_grieta_escalonada_2"
+    ],
+    "images": [
+      "https://example.com/img_grieta_escalonada_1.jpg",
+      "https://example.com/img_grieta_escalonada_2.jpg"
+    ],
+    "technical_terms": [
+      "asentamiento diferencial",
+      "mampostería",
+      "cimentación",
+      "refuerzo estructural",
+      "resina epóxica"
+    ]
+  },
+  "grieta_diagonal": {
+    "title": "Grieta Diagonal",
+    "definition": "Fisura que forma un ángulo diagonal, generalmente indicativa de esfuerzos cortantes",
+    "causes": [
+      "Esfuerzos cortantes excesivos",
+      "Carga lateral no considerada",
+      "Deficiencias en el diseño estructural",
+      "Movimientos del terreno",
+      "Sobrecarga temporal"
+    ],
+    "severity": "Alta",
+    "action_required": "Evaluación estructural urgente",
+    "priority": "Crítica",
+    "investigation_steps": [
+      "Análisis estructural completo",
+      "Evaluación de cargas laterales",
+      "Revisión de cálculos de diseño",
+      "Consultar con ingeniero estructural especializado"
+    ],
+    "solutions": [
+      "Refuerzo con fibra de carbono",
+      "Inyección de resina estructural",
+      "Refuerzo con acero de refuerzo",
+      "Reconstrucción estructural"
+    ],
+    "videos": [
+      "https://example.com/video_grieta_diagonal_1"
+    ],
+    "images": [
+      "https://example.com/img_grieta_diagonal_1.jpg"
+    ],
+    "technical_terms": [
+      "esfuerzo cortante",
+      "carga lateral",
+      "fibra de carbono",
+      "refuerzo estructural",
+      "análisis estructural"
+    ]
+  },
+  "humedad_interior": {
+    "title": "Humedad Interior",
+    "definition": "Presencia de humedad en el interior de la estructura, indicativa de problemas de impermeabilización",
+    "causes": [
+      "Filtraciones de agua",
+      "Condensación excesiva",
+      "Falta de ventilación",
+      "Deficiencias en impermeabilización",
+      "Fugas en sistemas hidráulicos"
+    ],
+    "severity": "Media",
+    "action_required": "Revisión de sistemas hidráulicos",
+    "priority": "Media",
+    "investigation_steps": [
+      "Revisar sistemas de plomería",
+      "Evaluar impermeabilización",
+      "Medir niveles de humedad",
+      "Revisar sistemas de ventilación"
+    ],
+    "solutions": [
+      "Reparación de impermeabilización",
+      "Mejora de ventilación",
+      "Reparación de fugas",
+      "Sistema de drenaje"
+    ],
+    "videos": [
+      "https://example.com/video_humedad_interior_1"
+    ],
+    "images": [
+      "https://example.com/img_humedad_interior_1.jpg"
+    ],
+    "technical_terms": [
+      "impermeabilización",
+      "filtración de agua",
+      "condensación",
+      "ventilación",
+      "sistemas hidráulicos"
+    ]
+  },
+  "humedad_exterior": {
+    "title": "Humedad Exterior",
+    "definition": "Presencia de humedad en la superficie exterior de la estructura",
+    "causes": [
+      "Lluvia directa",
+      "Humedad del ambiente",
+      "Deficiencias en revestimientos",
+      "Falta de protección",
+      "Drenaje inadecuado"
+    ],
+    "severity": "Baja-Media",
+    "action_required": "Revisión de revestimientos",
+    "priority": "Baja",
+    "investigation_steps": [
+      "Evaluar revestimientos",
+      "Revisar sistemas de drenaje",
+      "Medir exposición a la intemperie",
+      "Revisar mantenimiento"
+    ],
+    "solutions": [
+      "Aplicación de revestimientos",
+      "Mejora de drenaje",
+      "Protección contra la intemperie",
+      "Mantenimiento preventivo"
+    ],
+    "videos": [
+      "https://example.com/video_humedad_exterior_1"
+    ],
+    "images": [
+      "https://example.com/img_humedad_exterior_1.jpg"
+    ],
+    "technical_terms": [
+      "revestimientos",
+      "protección contra la intemperie",
+      "drenaje",
+      "mantenimiento preventivo",
+      "exposición ambiental"
+    ]
+  },
+  "inspector_presente": {
+    "title": "Inspector Presente",
+    "definition": "Presencia de personal de inspección en el área de trabajo",
+    "causes": [
+      "Inspección programada",
+      "Inspección de emergencia",
+      "Supervisión de obra",
+      "Evaluación de seguridad"
+    ],
+    "severity": "N/A",
+    "action_required": "Coordinación con inspector",
+    "priority": "N/A",
+    "investigation_steps": [
+      "Identificar al inspector",
+      "Revisar credenciales",
+      "Coordinar actividades",
+      "Documentar presencia"
+    ],
+    "solutions": [
+      "Coordinación de actividades",
+      "Documentación de inspección",
+      "Seguimiento de recomendaciones",
+      "Actualización de registros"
+    ],
+    "videos": [],
+    "images": [],
+    "technical_terms": [
+      "inspección",
+      "supervisión",
+      "coordinación",
+      "documentación",
+      "credenciales"
+    ]
+  }
+}

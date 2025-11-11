@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#1e1e1e"/>
+  <line x1="120" y1="420" x2="680" y2="80" stroke="#ffa000" stroke-width="6"/>
+  <text x="24" y="470" fill="#ddd" font-family="Arial" font-size="20">Caso — Grieta Diagonal</text>
+</svg>
+

@@ -1,0 +1,252 @@
+.drone-viewer-container {
+  padding: 20px;
+  background: #000000;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.drone-viewer-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  background: #FFD700;
+  color: #000;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+}
+
+.back-button:hover {
+  background: #FFA500;
+}
+
+h2 {
+  color: #FFD700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.camera-controls {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.info-text {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-align: left;
+  line-height: 1.6;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-text code {
+  background: #FFD700;
+  color: #000;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.start-button, .stop-button {
+  background: #FFD700;
+  color: #000;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 10px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.start-button:hover {
+  background: #FFA500;
+}
+
+.stop-button {
+  background: #FF0000;
+  color: white;
+}
+
+.stop-button:hover {
+  background: #CC0000;
+}
+
+.stop-button:disabled, .start-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.detection-status {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.status-active {
+  color: #4CAF50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.status-inactive {
+  color: #f44336;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.last-update {
+  font-size: 0.9em;
+  color: #ccc;
+  margin-left: 10px;
+}
+
+.detections-container {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.detections-container h3 {
+  color: #FFD700;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
+.detections-list {
+  display: grid;
+  gap: 10px;
+}
+
+.detection-item {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid;
+  transition: transform 0.2s;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detection-item:hover {
+  transform: translateX(5px);
+}
+
+.detection-persona {
+  border-left-color: #4CAF50;
+}
+
+.detection-crack {
+  border-left-color: #f44336;
+}
+
+.detection-humedad {
+  border-left-color: #2196F3;
+}
+
+.detection-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.detection-label {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.detection-confidence {
+  background: #FFD700;
+  color: #000;
+  padding: 3px 8px;
+  border-radius: 15px;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.detection-details {
+  color: #ccc;
+  font-size: 0.9em;
+}
+
+.no-detections {
+  text-align: center;
+  color: #ccc;
+  font-style: italic;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.icon {
+  margin-right: 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .drone-viewer-container {
+    padding: 10px;
+  }
+  
+  .drone-viewer-header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+  
+  .back-button {
+    margin-right: 0;
+  }
+  
+  .start-button, .stop-button {
+    margin: 5px;
+    padding: 10px 20px;
+  }
+  
+  .status-active, .status-inactive {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .detection-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+}

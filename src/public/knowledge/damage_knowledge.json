@@ -1,0 +1,195 @@
+{
+  "grieta_escalonada": {
+    "title": "Grieta Escalonada",
+    "definition": "Fisura que sigue un patrón escalonado, típica de asentamientos diferenciales en estructuras de mampostería",
+    "causes": [
+      "Asentamiento diferencial del terreno",
+      "Carga excesiva en cimientos",
+      "Variaciones en la humedad del suelo",
+      "Vibraciones del tráfico",
+      "Movimientos sísmicos"
+    ],
+    "severity": "Media-Alta",
+    "action_required": "Evaluación estructural inmediata",
+    "priority": "Alta",
+    "investigation_steps": [
+      "Revisar planos estructurales",
+      "Medir dimensiones de la grieta",
+      "Evaluar estabilidad del terreno",
+      "Consultar con ingeniero estructural"
+    ],
+    "solutions": [
+      "Refuerzo estructural",
+      "Inyección de resina epóxica",
+      "Reconstrucción parcial",
+      "Sistema de monitoreo"
+    ],
+    "videos": [
+      "https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4"
+    ],
+    "images": [
+      "/knowledge/images/grieta_escalonada_1.svg",
+      "/knowledge/images/grieta_escalonada_2.svg"
+    ],
+    "documents": [
+      { "title": "ACI: Concrete Repair (overview)", "url": "https://www.concrete.org/topicsinconcrete/topicdetail/concreterepair.aspx" },
+      { "title": "fib: Strengthening of Structures (overview)", "url": "https://www.fib-international.org/technical-activities/strengthening-of-structures" }
+    ],
+    "cases": [
+      {
+        "title": "Muro de mampostería - Vivienda 2023",
+        "description": "Grieta escalonada por asentamiento diferencial tras lluvias intensas.",
+        "image": "/knowledge/images/caso_grieta_escalonada.svg",
+        "link": "https://example.com/caso-grieta-escalonada"
+      }
+    ],
+    "quiz": {
+      "questions": [
+        { "q": "¿Cuál es la causa más común de una grieta escalonada?", "options": ["Corrosión del acero", "Asentamiento diferencial", "Fuego"], "correctIndex": 1 },
+        { "q": "¿Qué acción es prioritaria?", "options": ["Pintar la pared", "Monitoreo estructural", "Demoler"], "correctIndex": 1 },
+        { "q": "¿En qué elemento aparece con mayor frecuencia este patrón?", "options": ["Mampostería", "Vigas de acero", "Cubiertas metálicas"], "correctIndex": 0 },
+        { "q": "¿Qué medición es clave para seguimiento?", "options": ["Temperatura ambiente", "Abertura y longitud de la grieta", "Color del recubrimiento"], "correctIndex": 1 }
+      ]
+    },
+    "glossary": {
+      "Asentamiento diferencial": "Descenso desigual de distintas zonas de la cimentación.",
+      "Inyección epóxica": "Método para rellenar fisuras y restaurar capacidad portante."
+    },
+    "technical_terms": [
+      "asentamiento diferencial",
+      "mampostería",
+      "cimentación",
+      "refuerzo estructural",
+      "resina epóxica"
+    ]
+  },
+  "grieta_diagonal": {
+    "title": "Grieta Diagonal",
+    "definition": "Fisura que forma un ángulo diagonal, generalmente indicativa de esfuerzos cortantes",
+    "causes": [
+      "Esfuerzos cortantes excesivos",
+      "Carga lateral no considerada",
+      "Deficiencias en el diseño estructural",
+      "Movimientos del terreno",
+      "Sobrecarga temporal"
+    ],
+    "severity": "Alta",
+    "action_required": "Evaluación estructural urgente",
+    "priority": "Crítica",
+    "investigation_steps": [
+      "Análisis estructural completo",
+      "Evaluación de cargas laterales",
+      "Revisión de cálculos de diseño",
+      "Consultar con ingeniero estructural especializado"
+    ],
+    "solutions": [
+      "Refuerzo con fibra de carbono",
+      "Inyección de resina estructural",
+      "Refuerzo con acero de refuerzo",
+      "Reconstrucción estructural"
+    ],
+    "videos": [
+      "https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4"
+    ],
+    "images": [
+      "/knowledge/images/grieta_diagonal_1.svg",
+      "/knowledge/images/grieta_diagonal_2.svg"
+    ],
+    "documents": [
+      { "title": "fib Bulletins (FRP overview)", "url": "https://www.fib-international.org/bulletins" },
+      { "title": "ASCE: Seismic design resources", "url": "https://www.asce.org/resources-and-publications/" }
+    ],
+    "cases": [
+      {
+        "title": "Edificio de marcos - 2022",
+        "description": "Grietas diagonales por acción sísmica moderada.",
+        "image": "/knowledge/images/caso_grieta_diagonal.svg",
+        "link": "https://example.com/caso-grieta-diagonal"
+      }
+    ],
+    "quiz": {
+      "questions": [
+        { "q": "Una grieta diagonal suele asociarse a...", "options": ["Compresión pura", "Cortante", "Fluencia"], "correctIndex": 1 },
+        { "q": "Un refuerzo frecuente es...", "options": ["FRP (fibra de carbono)", "Yeso", "Pintura acrílica"], "correctIndex": 0 },
+        { "q": "¿Qué ensayo apoya el diagnóstico?", "options": ["Esclerometría", "Prueba de estanqueidad", "Análisis cromático"], "correctIndex": 0 },
+        { "q": "¿Dónde se observa típicamente?", "options": ["En los apoyos de vigas/losas", "En cielos falsos", "En barandas"], "correctIndex": 0 }
+      ]
+    },
+    "glossary": {
+      "Cortante": "Esfuerzos que tienden a deslizar secciones adyacentes.",
+      "FRP": "Polímeros reforzados con fibras, usados para reforzamiento."
+    },
+    "technical_terms": [
+      "esfuerzo cortante",
+      "carga lateral",
+      "fibra de carbono",
+      "refuerzo estructural",
+      "análisis estructural"
+    ]
+  },
+  "humedad_interior": {
+    "title": "Humedad Interior",
+    "definition": "Presencia de humedad en el interior de la estructura, indicativa de problemas de impermeabilización",
+    "causes": [
+      "Filtraciones de agua",
+      "Condensación excesiva",
+      "Falta de ventilación",
+      "Deficiencias en impermeabilización",
+      "Fugas en sistemas hidráulicos"
+    ],
+    "severity": "Media",
+    "action_required": "Revisión de sistemas hidráulicos",
+    "priority": "Media",
+    "investigation_steps": [
+      "Revisar sistemas de plomería",
+      "Evaluar impermeabilización",
+      "Medir niveles de humedad",
+      "Revisar sistemas de ventilación"
+    ],
+    "solutions": [
+      "Reparación de impermeabilización",
+      "Mejora de ventilación",
+      "Reparación de fugas",
+      "Sistema de drenaje"
+    ],
+    "videos": [
+      "https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4"
+    ],
+    "images": [
+      "/knowledge/images/humedad_interior_1.svg",
+      "/knowledge/images/humedad_interior_2.svg"
+    ],
+    "documents": [
+      { "title": "ASHRAE: Moisture management overview", "url": "https://www.ashrae.org/technical-resources" },
+      { "title": "WHO Housing and health guidelines", "url": "https://www.who.int/publications" }
+    ],
+    "cases": [
+      {
+        "title": "Sótano residencial - 2021",
+        "description": "Manchas de humedad y eflorescencias por filtraciones capilares.",
+        "image": "/knowledge/images/humedad_interior_2.svg",
+        "link": "https://example.com/caso-humedad-interior"
+      }
+    ],
+    "quiz": {
+      "questions": [
+        { "q": "¿Qué indica la humedad interior?", "options": ["Problema de impermeabilización", "Falta de pintura", "Estructura sobredimensionada"], "correctIndex": 0 },
+        { "q": "Una medida adecuada es...", "options": ["Mejorar ventilación", "Retirar el muro", "Añadir decoración"], "correctIndex": 0 },
+        { "q": "¿Cuál evidencia apoya la presencia de humedad?", "options": ["Eflorescencias", "Oxidación uniforme", "Brillo superficial"], "correctIndex": 1 },
+        { "q": "¿Qué inspección complementaria es útil?", "options": ["Termografía", "Ultrasonido para metales", "Medición de ruido"], "correctIndex": 0 }
+      ]
+    },
+    "glossary": {
+      "Condensación": "Cambio de vapor de agua a líquido sobre superficies frías.",
+      "Eflorescencia": "Depósitos de sales cristalizadas por migración de humedad."
+    },
+    "technical_terms": [
+      "impermeabilización",
+      "filtración de agua",
+      "condensación",
+      "ventilación",
+      "sistemas hidráulicos"
+    ]
+  }
+}
+

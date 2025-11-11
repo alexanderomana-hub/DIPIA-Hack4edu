@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#2b2b2b"/>
+  <path d="M120 60 L180 120 L210 110 L260 170 L300 150 L360 210 L420 200 L470 260 L530 240 L590 300 L640 280 L700 340" stroke="#FFD700" stroke-width="6" fill="none"/>
+  <text x="24" y="470" fill="#ddd" font-family="Arial" font-size="20">Grieta Escalonada — ejemplo</text>
+</svg>
+

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#242424"/>
+  <path d="M80 420 L140 360 L190 380 L240 320 L300 340 L350 280 L410 300 L470 240 L520 260 L570 200 L630 220 L680 160" stroke="#FFA500" stroke-width="6" fill="none"/>
+  <text x="24" y="470" fill="#ddd" font-family="Arial" font-size="20">Grieta Escalonada — patrón</text>
+</svg>
+
