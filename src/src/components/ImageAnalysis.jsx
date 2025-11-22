@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { BsUpload, BsImage, BsArrowLeftCircle, BsEye, BsDownload } from 'react-icons/bs';
+import React, { useState, useRef, useEffect } from 'react';
+import { BsUpload, BsImage, BsArrowLeftCircle, BsEye, BsDownload, BsBox, BsTag, BsCart, BsStarFill } from 'react-icons/bs';
 import './ImageAnalysis.css';
 import { useTranslation } from '../hack4edu/hooks_useTranslation';
 
@@ -10,6 +10,8 @@ const ImageAnalysis = ({ onBack }) => {
   const [results, setResults] = useState(null);
   const [error, setError] = useState('');
   const [extraInfoIndex, setExtraInfoIndex] = useState(null);
+  const [recommendedMaterials, setRecommendedMaterials] = useState([]);
+  const [loadingRecommendations, setLoadingRecommendations] = useState(false);
   const { t } = useTranslation();
 
   const getExtraInfo = (label) => {
@@ -128,6 +130,11 @@ const ImageAnalysis = ({ onBack }) => {
             drawDetections(preview, data.detections, data.image_size);
           }
         }, 100);
+        
+        // Obtener recomendaciones de materiales basadas en las patologías detectadas
+        if (data.detections && data.detections.length > 0) {
+          fetchRecommendations(data.detections);
+        }
       } else {
         setError(data.error || t('common.error', 'Error analyzing image'));
       }
@@ -138,11 +145,58 @@ const ImageAnalysis = ({ onBack }) => {
     }
   };
 
+  const fetchRecommendations = async (detections) => {
+    // Filtrar solo patologías (no personas)
+    const pathologies = detections
+      .filter(d => d.label !== 'Persona' && d.label !== 'Person')
+      .map(d => d.label);
+    
+    if (pathologies.length === 0) {
+      setRecommendedMaterials([]);
+      return;
+    }
+    
+    setLoadingRecommendations(true);
+    try {
+      const response = await fetch('/materials/recommendations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pathologies })
+      });
+      const data = await response.json();
+      if (data.success) {
+        setRecommendedMaterials(data.materials || []);
+      }
+    } catch (err) {
+      console.error('Error fetching recommendations:', err);
+    } finally {
+      setLoadingRecommendations(false);
+    }
+  };
+
+  const handleMaterialUse = async (materialId) => {
+    try {
+      const response = await fetch(`/materials/${materialId}/use`, {
+        method: 'POST'
+      });
+      const data = await response.json();
+      if (data.success) {
+        // Actualizar el contador en el estado local
+        setRecommendedMaterials(prev => 
+          prev.map(m => m.id === materialId ? { ...m, usage_count: data.usage_count } : m)
+        );
+      }
+    } catch (error) {
+      console.error('Error incrementing usage:', error);
+    }
+  };
+
   const handleReset = () => {
     setSelectedFile(null);
     setPreview(null);
     setResults(null);
     setError('');
+    setRecommendedMaterials([]);
     if (canvasRef.current) {
       const ctx = canvasRef.current.getContext('2d');
       ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
@@ -252,6 +306,77 @@ const ImageAnalysis = ({ onBack }) => {
                 </div>
               )}
             </div>
+          </div>
+        )}
+
+        {recommendedMaterials.length > 0 && (
+          <div className="recommendations-section">
+            <div className="recommendations-card">
+              <h3 className="recommendations-title">
+                <BsBox className="icon" /> {t('image.recommendations.title', 'Recommended Materials')}
+              </h3>
+              <p className="recommendations-subtitle">
+                {t('image.recommendations.subtitle', 'Based on detected pathologies, here are materials available in your inventory:')}
+              </p>
+              <div className="recommendations-grid">
+                {recommendedMaterials.map((material) => (
+                  <div 
+                    key={material.id} 
+                    className="recommendation-item"
+                    onClick={() => handleMaterialUse(material.id)}
+                    style={{ cursor: 'pointer' }}
+                    title={t('image.recommendations.click_to_use', 'Click to mark as used')}
+                  >
+                    {material.image_url && (
+                      <div className="recommendation-image">
+                        <img src={material.image_url} alt={material.name} onError={(e) => { e.target.style.display = 'none'; }} />
+                      </div>
+                    )}
+                    <div className="recommendation-header">
+                      <h4 className="recommendation-name">{material.name}</h4>
+                      {material.category && (
+                        <span className="recommendation-category" style={{ 
+                          backgroundColor: material.category === 'Reparación' ? '#f44336' : 
+                                          material.category === 'Impermeabilización' ? '#2196F3' : 
+                                          material.category === 'Sellado' ? '#FF9800' : 
+                                          material.category === 'Refuerzo' ? '#4CAF50' : '#666'
+                        }}>
+                          {material.category}
+                        </span>
+                      )}
+                    </div>
+                    <p className="recommendation-supplier">{material.supplier}</p>
+                    <div className="recommendation-price">
+                      <span className="price">${parseFloat(material.price).toFixed(2)}</span>
+                      <span className="unit">/{material.unit}</span>
+                    </div>
+                    {material.match_reason && (
+                      <div className="recommendation-match">
+                        <BsTag /> {t('image.recommendations.match', 'Recommended for')}: {material.match_reason}
+                      </div>
+                    )}
+                    <div className="recommendation-footer">
+                      {material.is_favorite && (
+                        <div className="recommendation-badge">
+                          <BsStarFill /> {t('materials.favorite', 'Favorite')}
+                        </div>
+                      )}
+                      {material.usage_count > 0 && (
+                        <div className="recommendation-usage">
+                          {t('materials.used', 'Used')} {material.usage_count}x
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {loadingRecommendations && (
+          <div className="loading-recommendations">
+            {t('image.recommendations.loading', 'Loading recommendations...')}
           </div>
         )}
       </div>

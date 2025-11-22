@@ -48,8 +48,19 @@
         "supplier": "Proveedor",
         "price": "Precio",
         "unit": "Unidad",
+        "category": "Categoría",
+        "pathology": "Patología",
         "actions": "Acciones"
       },
+      "filter": {
+        "category": "Filtrar por Categoría:",
+        "all": "Todas las Categorías"
+      },
+      "count": "materiales",
+      "favorite": "Favorito",
+      "add_favorite": "Agregar a favoritos",
+      "remove_favorite": "Quitar de favoritos",
+      "used": "Usado",
       "actions": {
         "edit": "Editar",
         "delete": "Eliminar",
@@ -62,13 +73,22 @@
           "material": "Material",
           "supplier": "Proveedor",
           "price": "Precio",
-          "unit": "Unidad"
+          "unit": "Unidad",
+          "category": "Categoría",
+          "pathology": "Patología Relacionada",
+          "image_url": "URL de Imagen"
         },
         "placeholders": {
           "material": "Nombre del material",
           "supplier": "Nombre del proveedor",
           "price": "0.00",
-          "unit": "kg, m, pza, etc."
+          "unit": "kg, m, pza, etc.",
+          "none": "Ninguna",
+          "image_url": "https://ejemplo.com/imagen.jpg"
+        },
+        "hints": {
+          "pathology": "Selecciona la patología para la cual se usa este material",
+          "image_url": "Opcional: URL de la imagen del material"
         },
         "buttons": {
           "cancel": "Cancelar",
@@ -93,7 +113,14 @@
       "detected": "Objetos detectados:",
       "no_detections": "No se detectaron objetos en la imagen",
       "file": "Archivo:",
-      "size": "Tamaño:"
+      "size": "Tamaño:",
+      "recommendations": {
+        "title": "Materiales Recomendados",
+        "subtitle": "Basado en las patologías detectadas, aquí tienes materiales disponibles en tu inventario:",
+        "loading": "Cargando recomendaciones...",
+        "match": "Recomendado para",
+        "click_to_use": "Haz clic para marcar como usado"
+      }
     },
     "raw_data": {
       "title": "Datos Crudos (IA N°1)",
@@ -288,8 +315,19 @@
         "supplier": "Supplier",
         "price": "Price",
         "unit": "Unit",
+        "category": "Category",
+        "pathology": "Pathology",
         "actions": "Actions"
       },
+      "filter": {
+        "category": "Filter by Category:",
+        "all": "All Categories"
+      },
+      "count": "materials",
+      "favorite": "Favorite",
+      "add_favorite": "Add to favorites",
+      "remove_favorite": "Remove from favorites",
+      "used": "Used",
       "actions": {
         "edit": "Edit",
         "delete": "Delete",
@@ -302,13 +340,22 @@
           "material": "Material",
           "supplier": "Supplier",
           "price": "Price",
-          "unit": "Unit"
+          "unit": "Unit",
+          "category": "Category",
+          "pathology": "Related Pathology",
+          "image_url": "Image URL"
         },
         "placeholders": {
           "material": "Material name",
           "supplier": "Supplier name",
           "price": "0.00",
-          "unit": "kg, m, pc, etc."
+          "unit": "kg, m, pc, etc.",
+          "none": "None",
+          "image_url": "https://example.com/image.jpg"
+        },
+        "hints": {
+          "pathology": "Select the pathology this material is used for",
+          "image_url": "Optional: URL of the material image"
         },
         "buttons": {
           "cancel": "Cancel",
@@ -333,7 +380,14 @@
       "detected": "Detected Objects:",
       "no_detections": "No objects detected in the image",
       "file": "File:",
-      "size": "Size:"
+      "size": "Size:",
+      "recommendations": {
+        "title": "Recommended Materials",
+        "subtitle": "Based on detected pathologies, here are materials available in your inventory:",
+        "loading": "Loading recommendations...",
+        "match": "Recommended for",
+        "click_to_use": "Click to mark as used"
+      }
     },
     "raw_data": {
       "title": "Raw Data (AI N°1)",

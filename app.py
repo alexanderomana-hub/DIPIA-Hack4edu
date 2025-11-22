@@ -41,15 +41,17 @@ def init_database():
         cursor.execute("ALTER TABLE users ADD COLUMN full_name TEXT")
     
     # Verificar si la tabla materials existe y tiene las columnas correctas
-    cursor.execute("PRAGMA table_info(materials)")
-    material_columns = [column[1] for column in cursor.fetchall()]
+    try:
+        cursor.execute("PRAGMA table_info(materials)")
+        material_columns = [column[1] for column in cursor.fetchall()]
+    except:
+        material_columns = []
     
     print(f"🔍 Columnas actuales en materials: {material_columns}")
     
-    # Si la tabla existe pero tiene columnas diferentes, la recreamos
-    if material_columns and 'name' not in material_columns:
-        print("🔄 Recreando tabla materials con columnas correctas...")
-        cursor.execute("DROP TABLE IF EXISTS materials")
+    # Si la tabla no existe, la creamos con todas las columnas
+    if not material_columns:
+        print("🔄 Creando tabla materials con todas las columnas...")
         cursor.execute('''
             CREATE TABLE materials (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -57,26 +59,34 @@ def init_database():
                 supplier TEXT NOT NULL,
                 price REAL NOT NULL,
                 unit TEXT NOT NULL,
+                category TEXT DEFAULT 'General',
+                pathology_related TEXT DEFAULT '',
+                image_url TEXT DEFAULT '',
+                is_favorite INTEGER DEFAULT 0,
+                usage_count INTEGER DEFAULT 0,
                 user_id INTEGER NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (user_id) REFERENCES users (id)
             )
         ''')
-        print("✅ Tabla materials recreada con columnas correctas")
+        print("✅ Tabla materials creada con todas las columnas")
     else:
-        # Si no existe la tabla, la creamos
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS materials (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name TEXT NOT NULL,
-                supplier TEXT NOT NULL,
-                price REAL NOT NULL,
-                unit TEXT NOT NULL,
-                user_id INTEGER NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (user_id) REFERENCES users (id)
-            )
-        ''')
+        # Si existe, agregar columnas nuevas si no existen
+        if 'category' not in material_columns:
+            print("➕ Agregando columna category...")
+            cursor.execute("ALTER TABLE materials ADD COLUMN category TEXT DEFAULT 'General'")
+        if 'pathology_related' not in material_columns:
+            print("➕ Agregando columna pathology_related...")
+            cursor.execute("ALTER TABLE materials ADD COLUMN pathology_related TEXT DEFAULT ''")
+        if 'image_url' not in material_columns:
+            print("➕ Agregando columna image_url...")
+            cursor.execute("ALTER TABLE materials ADD COLUMN image_url TEXT DEFAULT ''")
+        if 'is_favorite' not in material_columns:
+            print("➕ Agregando columna is_favorite...")
+            cursor.execute("ALTER TABLE materials ADD COLUMN is_favorite INTEGER DEFAULT 0")
+        if 'usage_count' not in material_columns:
+            print("➕ Agregando columna usage_count...")
+            cursor.execute("ALTER TABLE materials ADD COLUMN usage_count INTEGER DEFAULT 0")
     
     conn.commit()
     conn.close()
@@ -214,7 +224,12 @@ def get_materials():
                 "supplier": material[2],
                 "price": material[3],
                 "unit": material[4],
-                "created_at": material[6]
+                "category": material[5] if len(material) > 5 else 'General',
+                "pathology_related": material[6] if len(material) > 6 else '',
+                "image_url": material[7] if len(material) > 7 else '',
+                "is_favorite": bool(material[8]) if len(material) > 8 else False,
+                "usage_count": material[9] if len(material) > 9 else 0,
+                "created_at": material[10] if len(material) > 10 else (material[7] if len(material) > 7 else material[6])
             })
         
         print(f"✅ Materiales encontrados: {len(materials_list)}")
@@ -242,12 +257,18 @@ def add_material():
         supplier = data.get('supplier')
         price = data.get('price')
         unit = data.get('unit')
+        category = data.get('category', 'General')
+        pathology_related = data.get('pathology_related', '')
+        image_url = data.get('image_url', '')
         
         print(f"🔍 Campos extraídos:")
         print(f"  - name: {name}")
         print(f"  - supplier: {supplier}")
         print(f"  - price: {price}")
         print(f"  - unit: {unit}")
+        print(f"  - category: {category}")
+        print(f"  - pathology_related: {pathology_related}")
+        print(f"  - image_url: {image_url}")
         
         if not all([name, supplier, price, unit]):
             print("❌ Faltan campos requeridos")
@@ -257,8 +278,8 @@ def add_material():
         cursor = conn.cursor()
         
         cursor.execute(
-            "INSERT INTO materials (name, supplier, price, unit, user_id) VALUES (?, ?, ?, ?, ?)",
-            (name, supplier, price, unit, user_id)
+            "INSERT INTO materials (name, supplier, price, unit, category, pathology_related, image_url, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+            (name, supplier, price, unit, category, pathology_related, image_url, user_id)
         )
         
         conn.commit()
@@ -284,13 +305,16 @@ def update_material(material_id):
         supplier = data.get('supplier')
         price = data.get('price')
         unit = data.get('unit')
+        category = data.get('category', 'General')
+        pathology_related = data.get('pathology_related', '')
+        image_url = data.get('image_url', '')
         
         conn = sqlite3.connect(DATABASE)
         cursor = conn.cursor()
         
         cursor.execute(
-            "UPDATE materials SET name = ?, supplier = ?, price = ?, unit = ? WHERE id = ? AND user_id = ?",
-            (name, supplier, price, unit, material_id, user_id)
+            "UPDATE materials SET name = ?, supplier = ?, price = ?, unit = ?, category = ?, pathology_related = ?, image_url = ? WHERE id = ? AND user_id = ?",
+            (name, supplier, price, unit, category, pathology_related, image_url, material_id, user_id)
         )
         
         if cursor.rowcount > 0:
@@ -504,6 +528,154 @@ def analyze_image():
     
     except Exception as e:
         print(f"❌ Error al analizar imagen: {e}")
+        return jsonify({"success": False, "error": str(e)}), 500
+
+@app.route('/materials/recommendations', methods=['POST'])
+def get_material_recommendations():
+    """Obtener recomendaciones de materiales basadas en patologías detectadas con algoritmo mejorado"""
+    user_id = session.get('user_id')
+    if not user_id:
+        return jsonify({"success": False, "error": "No autenticado"}), 401
+    
+    try:
+        data = request.get_json()
+        pathologies = data.get('pathologies', [])  # Lista de patologías detectadas: ["Crack", "Humedad", etc.]
+        
+        if not pathologies:
+            return jsonify({"success": True, "materials": []})
+        
+        conn = sqlite3.connect(DATABASE)
+        cursor = conn.cursor()
+        
+        # Buscar materiales relacionados con las patologías detectadas
+        recommendations = []
+        for pathology in pathologies:
+            # Normalizar nombres de patologías
+            pathology_normalized = pathology.lower()
+            if pathology_normalized == 'crack':
+                pathology_normalized = 'grieta'
+            elif pathology_normalized == 'humedad':
+                pathology_normalized = 'humedad'
+            
+            # Buscar materiales que tengan esta patología en pathology_related
+            cursor.execute("""
+                SELECT * FROM materials 
+                WHERE user_id = ? 
+                AND (pathology_related LIKE ? OR pathology_related LIKE ? OR category LIKE ?)
+            """, (user_id, f'%{pathology}%', f'%{pathology_normalized}%', f'%{pathology_normalized}%'))
+            
+            materials = cursor.fetchall()
+            for material in materials:
+                recommendations.append({
+                    "id": material[0],
+                    "name": material[1],
+                    "supplier": material[2],
+                    "price": material[3],
+                    "unit": material[4],
+                    "category": material[5] if len(material) > 5 else 'General',
+                    "pathology_related": material[6] if len(material) > 6 else '',
+                    "image_url": material[7] if len(material) > 7 else '',
+                    "is_favorite": bool(material[8]) if len(material) > 8 else False,
+                    "usage_count": material[9] if len(material) > 9 else 0,
+                    "match_reason": pathology,
+                    "score": 0  # Score para priorización
+                })
+        
+        # Eliminar duplicados por ID y calcular score de priorización
+        seen = {}
+        for rec in recommendations:
+            if rec['id'] not in seen:
+                seen[rec['id']] = rec
+            else:
+                # Si ya existe, combinar match_reason
+                seen[rec['id']]['match_reason'] += f", {rec['match_reason']}"
+        
+        unique_recommendations = list(seen.values())
+        
+        # Algoritmo de priorización mejorado
+        for rec in unique_recommendations:
+            score = 0
+            # Priorizar favoritos (+50 puntos)
+            if rec.get('is_favorite'):
+                score += 50
+            # Priorizar por uso frecuente (+30 puntos por cada 10 usos)
+            score += (rec.get('usage_count', 0) // 10) * 30
+            # Priorizar por precio bajo (más económico = mejor, +20 puntos si precio < 100)
+            if rec.get('price', 999999) < 100:
+                score += 20
+            elif rec.get('price', 999999) < 500:
+                score += 10
+            # Priorizar materiales recientes (+5 puntos si es nuevo)
+            rec['score'] = score
+        
+        # Ordenar por score (mayor a menor), luego por precio (menor a mayor)
+        unique_recommendations.sort(key=lambda x: (-x['score'], x.get('price', 999999)))
+        
+        conn.close()
+        
+        return jsonify({"success": True, "materials": unique_recommendations})
+    
+    except Exception as e:
+        print(f"❌ Error al obtener recomendaciones: {e}")
+        return jsonify({"success": False, "error": str(e)}), 500
+
+@app.route('/materials/<int:material_id>/favorite', methods=['POST'])
+def toggle_favorite(material_id):
+    """Marcar/desmarcar material como favorito"""
+    user_id = session.get('user_id')
+    if not user_id:
+        return jsonify({"success": False, "error": "No autenticado"}), 401
+    
+    try:
+        data = request.get_json()
+        is_favorite = data.get('is_favorite', False)
+        
+        conn = sqlite3.connect(DATABASE)
+        cursor = conn.cursor()
+        
+        cursor.execute(
+            "UPDATE materials SET is_favorite = ? WHERE id = ? AND user_id = ?",
+            (1 if is_favorite else 0, material_id, user_id)
+        )
+        
+        if cursor.rowcount > 0:
+            conn.commit()
+            conn.close()
+            return jsonify({"success": True, "message": "Favorito actualizado"})
+        else:
+            conn.close()
+            return jsonify({"success": False, "error": "Material no encontrado"}), 404
+    
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
+@app.route('/materials/<int:material_id>/use', methods=['POST'])
+def increment_usage(material_id):
+    """Incrementar contador de uso de un material"""
+    user_id = session.get('user_id')
+    if not user_id:
+        return jsonify({"success": False, "error": "No autenticado"}), 401
+    
+    try:
+        conn = sqlite3.connect(DATABASE)
+        cursor = conn.cursor()
+        
+        cursor.execute(
+            "UPDATE materials SET usage_count = usage_count + 1 WHERE id = ? AND user_id = ?",
+            (material_id, user_id)
+        )
+        
+        if cursor.rowcount > 0:
+            cursor.execute("SELECT usage_count FROM materials WHERE id = ?", (material_id,))
+            usage_count = cursor.fetchone()[0]
+            conn.commit()
+            conn.close()
+            return jsonify({"success": True, "usage_count": usage_count})
+        else:
+            conn.close()
+            return jsonify({"success": False, "error": "Material no encontrado"}), 404
+    
+    except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
 
 # Ruta para recibir detecciones de la aplicación de escritorio
