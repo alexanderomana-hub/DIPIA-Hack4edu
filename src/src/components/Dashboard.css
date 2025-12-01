@@ -12,27 +12,144 @@
 }
 
 .dashboard-header {
-  text-align: center;
   margin-bottom: 50px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: #000;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
 }
 
 .dashboard-title {
   font-size: 3.5rem;
   font-weight: bold;
   color: #fff;
-  margin-bottom: 15px;
+  margin: 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   background: linear-gradient(45deg, #FFD700, #FFA500);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  letter-spacing: 2px;
 }
 
-.dashboard-subtitle {
-  font-size: 1.3rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+.company-tagline {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 5px 0 0 0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.header-stats {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  flex: 1;
+  min-width: 150px;
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  color: #FFD700;
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 5px;
+}
+
+.services-section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.section-description {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
 .dashboard-grid {
@@ -118,8 +235,22 @@
 .card-content p {
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.8);
-  margin: 0;
+  margin: 0 0 10px 0;
   line-height: 1.4;
+}
+
+.card-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  background: rgba(255, 215, 0, 0.2);
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  border-radius: 15px;
+  font-size: 0.75rem;
+  color: #FFD700;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 5px;
 }
 
 .card-arrow {
@@ -168,6 +299,95 @@
   background: linear-gradient(45deg, #d32f2f, #b71c1c);
 }
 
+.tutor-button {
+  background: linear-gradient(45deg, #2ecc71, #27ae60);
+  color: #fff;
+  border: none;
+  padding: 16px 26px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.15rem;
+  box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
+  transition: all 0.3s ease;
+}
+
+.tutor-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(39, 174, 96, 0.5);
+  background: linear-gradient(45deg, #27ae60, #229954);
+}
+
+.info-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin: 50px 0;
+}
+
+.info-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.info-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.info-icon {
+  font-size: 2.5rem;
+  color: #FFD700;
+  margin-bottom: 15px;
+}
+
+.info-card h4 {
+  font-size: 1.3rem;
+  color: #fff;
+  margin: 0 0 10px 0;
+  font-weight: bold;
+}
+
+.info-card p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.company-footer {
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 10px 0;
+}
+
+.footer-text strong {
+  color: #FFD700;
+  font-weight: bold;
+}
+
+.footer-copyright {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .dashboard-container {
@@ -178,12 +398,41 @@
     padding: 20px 10px;
   }
   
+  .dashboard-header {
+    padding: 20px;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .logo-section {
+    width: 100%;
+  }
+  
   .dashboard-title {
     font-size: 2.5rem;
   }
   
-  .dashboard-subtitle {
-    font-size: 1.1rem;
+  .company-tagline {
+    font-size: 0.9rem;
+  }
+  
+  .header-stats {
+    flex-direction: column;
+  }
+  
+  .stat-item {
+    width: 100%;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-description {
+    font-size: 1rem;
   }
   
   .dashboard-grid {
@@ -209,6 +458,20 @@
   
   .card-arrow {
     margin-top: 10px;
+  }
+  
+  .info-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .dashboard-footer {
+    flex-direction: column;
+  }
+  
+  .tutor-button,
+  .logout-button {
+    width: 100%;
+    justify-content: center;
   }
 }
 

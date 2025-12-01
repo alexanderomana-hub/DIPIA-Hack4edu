@@ -21,21 +21,54 @@
     },
     "home": {
       "subtitle": "Bienvenido al sistema de diagnóstico de patologías",
+      "tagline": "Diagnóstico Inteligente de Patologías en Infraestructura",
+      "services": {
+        "title": "Nuestros Servicios",
+        "description": "Herramientas profesionales para el diagnóstico y gestión de patologías estructurales"
+      },
+      "stats": {
+        "ai": "Con IA",
+        "accuracy": "Precisión",
+        "support": "Soporte"
+      },
+      "badge": {
+        "realtime": "Tiempo Real",
+        "inventory": "Inventario",
+        "ai": "Inteligencia Artificial"
+      },
+      "info": {
+        "quality": {
+          "title": "Calidad Certificada",
+          "text": "Nuestro sistema utiliza tecnología de vanguardia para garantizar diagnósticos precisos y confiables."
+        },
+        "innovation": {
+          "title": "Innovación Continua",
+          "text": "Actualizamos constantemente nuestros algoritmos de IA para mejorar la detección de patologías."
+        },
+        "expertise": {
+          "title": "Experiencia Comprobada",
+          "text": "Años de experiencia en diagnóstico de patologías estructurales y gestión de infraestructura."
+        }
+      },
+      "footer": {
+        "text": "Diagnóstico Inteligente de Patologías en Infraestructura",
+        "rights": "Todos los derechos reservados"
+      },
       "drone": {
         "title": "Visor de Dron",
         "subtitle": "Monitoreo en tiempo real con IA"
       },
       "materials": {
         "title": "Gestión de Materiales",
-        "subtitle": "Administra tu inventario"
+        "subtitle": "Administra tu inventario y presupuestos"
       },
       "analysis": {
         "title": "Análisis de Imágenes",
-        "subtitle": "Detecta patologías con IA"
+        "subtitle": "Detección de patologías con IA"
       },
       "buttons": {
         "tutor": "Tutor",
-        "logout": "Salir"
+        "logout": "Cerrar Sesión"
       }
     },
     "materials": {
@@ -57,10 +90,20 @@
         "all": "Todas las Categorías"
       },
       "count": "materiales",
+      "budget": {
+        "total": "Presupuesto Total",
+        "included": "incluidos"
+      },
       "favorite": "Favorito",
       "add_favorite": "Agregar a favoritos",
       "remove_favorite": "Quitar de favoritos",
       "used": "Usado",
+      "detected_pathologies": "Patologías Detectadas",
+      "suggested_category": "Categoría sugerida",
+      "pathology": {
+        "show": "Mostrar patologías",
+        "hide": "Ocultar patologías"
+      },
       "actions": {
         "edit": "Editar",
         "delete": "Eliminar",
@@ -95,8 +138,11 @@
           "save": "Guardar",
           "update": "Actualizar"
         },
-        "confirm_delete": "¿Estás seguro de que quieres eliminar este material?"
-      }
+        "confirm_delete": "¿Estás seguro de que quieres eliminar este material?",
+        "validation_error": "Por favor completa todos los campos requeridos",
+        "success": "Material guardado exitosamente"
+      },
+      "delete_success": "Material eliminado exitosamente"
     },
     "image": {
       "title": "Análisis de Imágenes con IA",
@@ -106,6 +152,11 @@
       "analyzing": "Analizando...",
       "clear": "Limpiar",
       "results": "Resultados del análisis",
+      "upload": {
+        "title": "Cargar Imagen",
+        "description": "Selecciona una imagen para analizar con IA",
+        "hint": "Haz clic aquí o arrastra una imagen"
+      },
       "summary": {
         "total": "Total de detecciones:",
         "size": "Tamaño de imagen:"
@@ -120,7 +171,9 @@
         "loading": "Cargando recomendaciones...",
         "match": "Recomendado para",
         "click_to_use": "Haz clic para marcar como usado"
-      }
+      },
+      "go_to_materials": "Ir a Gestión de Materiales",
+      "materials_hint": "Agrega materiales basados en las patologías detectadas"
     },
     "raw_data": {
       "title": "Datos Crudos (IA N°1)",
@@ -288,13 +341,46 @@
     },
     "home": {
       "subtitle": "Welcome to the pathology diagnosis system",
+      "tagline": "Intelligent Diagnosis of Infrastructure Pathologies",
+      "services": {
+        "title": "Our Services",
+        "description": "Professional tools for the diagnosis and management of structural pathologies"
+      },
+      "stats": {
+        "ai": "AI Powered",
+        "accuracy": "Accuracy",
+        "support": "Support"
+      },
+      "badge": {
+        "realtime": "Real Time",
+        "inventory": "Inventory",
+        "ai": "Artificial Intelligence"
+      },
+      "info": {
+        "quality": {
+          "title": "Certified Quality",
+          "text": "Our system uses cutting-edge technology to ensure accurate and reliable diagnoses."
+        },
+        "innovation": {
+          "title": "Continuous Innovation",
+          "text": "We constantly update our AI algorithms to improve pathology detection."
+        },
+        "expertise": {
+          "title": "Proven Experience",
+          "text": "Years of experience in structural pathology diagnosis and infrastructure management."
+        }
+      },
+      "footer": {
+        "text": "Intelligent Diagnosis of Infrastructure Pathologies",
+        "rights": "All rights reserved"
+      },
       "drone": {
         "title": "Drone Viewer",
         "subtitle": "Real-time monitoring with AI"
       },
       "materials": {
         "title": "Material Management",
-        "subtitle": "Manage your inventory"
+        "subtitle": "Manage your inventory and budgets"
       },
       "analysis": {
         "title": "Image Analysis",
@@ -324,10 +410,20 @@
         "all": "All Categories"
       },
       "count": "materials",
+      "budget": {
+        "total": "Total Budget",
+        "included": "included"
+      },
       "favorite": "Favorite",
       "add_favorite": "Add to favorites",
       "remove_favorite": "Remove from favorites",
       "used": "Used",
+      "detected_pathologies": "Detected Pathologies",
+      "suggested_category": "Suggested category",
+      "pathology": {
+        "show": "Show pathologies",
+        "hide": "Hide pathologies"
+      },
       "actions": {
         "edit": "Edit",
         "delete": "Delete",
@@ -362,8 +458,11 @@
           "save": "Save",
           "update": "Update"
         },
-        "confirm_delete": "Are you sure you want to delete this material?"
-      }
+        "confirm_delete": "Are you sure you want to delete this material?",
+        "validation_error": "Please complete all required fields",
+        "success": "Material saved successfully"
+      },
+      "delete_success": "Material deleted successfully"
     },
     "image": {
       "title": "AI Image Analysis",
@@ -373,6 +472,11 @@
       "analyzing": "Analyzing...",
       "clear": "Clear",
       "results": "Analysis Results",
+      "upload": {
+        "title": "Upload Image",
+        "description": "Select an image to analyze with AI",
+        "hint": "Click here or drag an image"
+      },
       "summary": {
         "total": "Total detections:",
         "size": "Image size:"
@@ -387,7 +491,9 @@
         "loading": "Loading recommendations...",
         "match": "Recommended for",
         "click_to_use": "Click to mark as used"
-      }
+      },
+      "go_to_materials": "Go to Material Management",
+      "materials_hint": "Add materials based on detected pathologies"
     },
     "raw_data": {
       "title": "Raw Data (AI N°1)",

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DIPIA | Ultimate Field App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        :root {
+            --bg: #050505;
+            --hud: #FFD700;
+            --hud-dim: rgba(255, 215, 0, 0.15);
+            --danger: #FF3333;
+            --success: #00FF41;
+            --text: #E0E0E0;
+            --blue-tech: #00f3ff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Share Tech Mono', monospace;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .screen {
+            display: none;
+            width: 100%; height: 100%;
+            padding: 20px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: absolute; top: 0; left: 0;
+            background: var(--bg);
+            z-index: 10;
+        }
+        .screen.active { display: flex; animation: bootUp 0.3s ease-out; }
+
+        @keyframes bootUp { 0% { opacity: 0; transform: scale(0.98); } 100% { opacity: 1; transform: scale(1); } }
+
+        h1 { font-family: 'Orbitron'; font-size: 2.5rem; color: var(--hud); text-shadow: 0 0 15px var(--hud-dim); margin-bottom: 5px; }
+        h2 { font-family: 'Orbitron'; color: white; margin-bottom: 20px; font-size: 1.3rem; }
+        
+        .tech-input {
+            background: rgba(0,0,0,0.5); border: 1px solid var(--hud); color: white;
+            padding: 15px; width: 100%; max-width: 300px; margin-bottom: 15px;
+            font-family: 'Share Tech Mono'; text-align: center; font-size: 1.1rem;
+        }
+
+        /* BOTONES PRINCIPALES */
+        .btn {
+            background: var(--hud); color: black; font-family: 'Orbitron'; font-weight: bold;
+            padding: 18px 20px; border: none; width: 100%; max-width: 320px;
+            cursor: pointer; clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+            margin-bottom: 15px; transition: 0.2s; font-size: 1rem;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .btn:active { transform: scale(0.96); background: white; }
+        .btn-blue { background: var(--blue-tech); box-shadow: 0 0 15px rgba(0, 243, 255, 0.3); }
+        .btn-outline { background: transparent; border: 2px solid var(--hud); color: var(--hud); }
+
+        /* CARDS DE GALERÍA */
+        .gallery-grid {
+            display: grid; grid-template-columns: 1fr; gap: 15px;
+            width: 100%; max-width: 350px; max-height: 60vh; overflow-y: auto;
+        }
+        .case-card {
+            background: rgba(20,20,20,0.9); border: 1px solid #444; border-radius: 8px;
+            padding: 15px; display: flex; align-items: center; gap: 15px;
+            cursor: pointer; transition: 0.2s; position: relative;
+        }
+        .case-card:hover { border-color: var(--hud); background: #222; }
+        .icon-box { font-size: 2rem; width: 50px; text-align: center; }
+
+        /* QUIZ UI */
+        .quiz-hud {
+            width: 100%; max-width: 350px; display: flex; justify-content: space-between;
+            margin-bottom: 20px; border-bottom: 2px solid #333; padding-bottom: 10px;
+        }
+        .lifeline-btn {
+            background: #222; color: var(--blue-tech); border: 1px solid var(--blue-tech);
+            padding: 5px 15px; font-size: 0.8rem; cursor: pointer; border-radius: 20px;
+            display: flex; align-items: center; gap: 5px;
+        }
+        .lifeline-btn.used { opacity: 0.3; pointer-events: none; border-color: #555; color: #555; }
+
+        .question-text {
+            background: rgba(255,255,255,0.05); border-left: 4px solid var(--hud);
+            padding: 20px; text-align: left; margin-bottom: 20px; border-radius: 0 10px 10px 0;
+        }
+
+        .option-btn {
+            background: transparent; border: 1px solid #555; color: #ccc;
+            width: 100%; padding: 15px; margin-bottom: 10px; text-align: left;
+            cursor: pointer; display: flex; align-items: center; gap: 15px; transition: 0.2s;
+        }
+        .option-btn.hidden { display: none; } /* Para el comodín */
+        
+        /* ESCÁNER REAL */
+        .camera-frame {
+            width: 100%; max-width: 320px; height: 320px; background: black;
+            border: 2px solid var(--hud); position: relative; overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .user-photo { width: 100%; height: 100%; object-fit: cover; }
+        .scan-laser {
+            position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+            background: var(--success); box-shadow: 0 0 20px var(--success);
+            animation: scanDown 2s infinite linear;
+        }
+        @keyframes scanDown { 0% { top: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+
+        /* OVERLAYS */
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 100;
+            display: none; flex-direction: column; justify-content: center; align-items: center;
+            padding: 30px; animation: flash 0.3s;
+        }
+        .overlay.error { border: 2px solid var(--danger); }
+        .overlay.success { border: 2px solid var(--success); }
+        .feedback-box { border-top: 1px solid #555; border-bottom: 1px solid #555; padding: 20px 0; margin: 20px 0; }
+
+        /* FINAL */
+        .id-badge {
+            background: linear-gradient(135deg, #111, #222);
+            border: 2px solid var(--blue-tech); padding: 20px; border-radius: 10px;
+            width: 100%; max-width: 350px; margin-bottom: 20px; position: relative;
+        }
+        .holo-stamp {
+            position: absolute; top: 10px; right: 10px; color: var(--blue-tech);
+            border: 1px solid var(--blue-tech); padding: 2px 8px; font-size: 0.7rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="screen-login" class="screen active">
+        <div style="font-size: 4rem; margin-bottom: 10px;">🏗️</div>
+        <h1>DIPIA 4.0</h1>
+        <p>SISTEMA TÁCTICO DE INGENIERÍA</p>
+        <input type="text" id="inputName" class="tech-input" placeholder="INGRESA TU NOMBRE">
+        <button class="btn" onclick="login()">INICIAR SISTEMA >></button>
+    </div>
+
+    <div id="screen-menu" class="screen">
+        <div style="text-align: left; width: 100%; max-width: 320px; margin-bottom: 20px; border-bottom: 1px solid #333;">
+            <span style="color: var(--hud); font-size: 0.8rem;">USUARIO:</span>
+            <h2 id="menu-user" style="margin:0;">ING. NOMBRE</h2>
+        </div>
+
+        <p>SELECCIONE MODO DE OPERACIÓN:</p>
+
+        <button class="btn" onclick="document.getElementById('realCam').click()">
+            <span>📷</span> INSPECCIÓN DE CAMPO
+        </button>
+        <input type="file" id="realCam" accept="image/*" capture="environment" style="display:none" onchange="handleRealPhoto(event)">
+
+        <button class="btn btn-blue" onclick="showScreen('screen-gallery')">
+            <span>📂</span> ENTRENAMIENTO (BD)
+        </button>
+    </div>
+
+    <div id="screen-gallery" class="screen">
+        <h2>BASE DE DATOS</h2>
+        <div class="gallery-grid">
+            <div class="case-card" onclick="startQuiz('crack')">
+                <div class="icon-box">⚡</div>
+                <div>
+                    <div style="color:white; font-weight:bold;">CASO: GRIETAS</div>
+                    <div style="font-size:0.8rem; color:#888;">Diagnóstico estructural</div>
+                </div>
+            </div>
+            <div class="case-card" onclick="startQuiz('moisture')">
+                <div class="icon-box">💧</div>
+                <div>
+                    <div style="color:white; font-weight:bold;">CASO: HUMEDAD</div>
+                    <div style="font-size:0.8rem; color:#888;">Patología hídrica</div>
+                </div>
+            </div>
+            <div class="case-card" onclick="startQuiz('corrosion')">
+                <div class="icon-box">🧱</div>
+                <div>
+                    <div style="color:white; font-weight:bold;">CASO: CORROSIÓN</div>
+                    <div style="font-size:0.8rem; color:#888;">Deterioro de acero</div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-outline" style="margin-top:20px;" onclick="showScreen('screen-menu')">VOLVER AL MENÚ</button>
+    </div>
+
+    <div id="screen-analysis" class="screen">
+        <h2>PROCESANDO IMAGEN...</h2>
+        <div class="camera-frame">
+            <div class="scan-laser"></div>
+            <img id="analysis-img" class="user-photo">
+        </div>
+        <div style="font-family: monospace; color: var(--success); text-align: left; width: 280px;">
+            > Segmentando daño... OK<br>
+            > Consultando red neuronal... OK<br>
+            > Tipo detectado: <span id="detected-type" style="color:white;">...</span>
+        </div>
+    </div>
+
+    <div id="screen-quiz" class="screen">
+        <div class="quiz-hud">
+            <span id="q-counter">PREGUNTA 1/3</span>
+            <div id="lifeline-btn" class="lifeline-btn" onclick="useLifeline()">
+                <span>💡</span> DATOS AUXILIARES
+            </div>
+        </div>
+
+        <div class="question-text">
+            <h3 id="q-title" style="color:white; margin-bottom:10px;">...</h3>
+            <p id="q-text" style="color:#ccc;">...</p>
+        </div>
+
+        <div id="options-container" style="width: 100%; max-width: 350px;"></div>
+    </div>
+
+    <div id="screen-final" class="screen">
+        <h1 style="color: var(--blue-tech);">INFORME GENERADO</h1>
+        
+        <div class="id-badge">
+            <div class="holo-stamp">VERIFICADO</div>
+            <p style="color: #888; font-size: 0.8rem;">INSPECTOR A CARGO</p>
+            <h2 id="final-user" style="color: white; margin: 5px 0;">ING. NOMBRE</h2>
+            <hr style="border: 0; border-top: 1px solid #444; margin: 15px 0;">
+            <p style="text-align: left;"><strong>HERRAMIENTA:</strong> DIPIA AI</p>
+            <p style="text-align: left;"><strong>RESULTADO:</strong> DIAGNÓSTICO EXITOSO</p>
+        </div>
+
+        <a href="https://wa.me/584129086130" class="btn" style="background: #25D366; color: white;">CONTACTAR DESARROLLADOR</a>
+        <a href="https://github.com/alexanderomana-hub/DIPIA-Hack4edu" class="btn btn-outline">VER CÓDIGO FUENTE</a>
+        <br>
+        <button class="btn btn-outline" style="border:none; font-size:0.8rem;" onclick="location.reload()">[ INICIAR NUEVA SESIÓN ]</button>
+    </div>
+
+    <div id="overlay-error" class="overlay error">
+        <h2 style="color: var(--danger);">❌ ERROR TÉCNICO</h2>
+        <div id="error-msg" class="feedback-box"></div>
+        <button class="btn btn-outline" onclick="closeOverlay('overlay-error')" style="color:white; border-color:white;">REINTENTAR</button>
+    </div>
+
+    <div id="overlay-success" class="overlay success">
+        <h2 style="color: var(--success);">✅ CORRECTO</h2>
+        <div id="success-msg" class="feedback-box"></div>
+        <button class="btn" onclick="nextQuestion()" style="background:var(--success); color:black;">CONTINUAR >></button>
+    </div>
+
+    <script>
+        let userName = "Invitado";
+        let currentQuestions = [];
+        let qIndex = 0;
+        let lifelineUsed = false;
+
+        // --- BASE DE DATOS DE PREGUNTAS ---
+        const DB = {
+            crack: [
+                {
+                    title: "OBSERVACIÓN",
+                    text: "Detectamos una grieta en 45 grados cerca de una columna. ¿Qué implica?",
+                    options: [
+                        { t: "Falla por corte / Asentamiento", c: true, f: "CORRECTO. Las diagonales indican esfuerzos cortantes graves." },
+                        { t: "Contracción térmica", c: false, f: "ERROR. La temperatura crea grietas tipo mapa, no diagonales profundas." },
+                        { t: "Mala pintura", c: false, f: "INCORRECTO. Esto es un daño estructural, no estético." }
+                    ]
+                },
+                {
+                    title: "MEDICIÓN",
+                    text: "Necesitas medir el ancho de la grieta con precisión de 0.01mm. ¿Qué usas?",
+                    options: [
+                        { t: "Regla escolar", c: false, f: "INSUFICIENTE. No tiene la resolución necesaria." },
+                        { t: "Fisurómetro (Caliper)", c: true, f: "EXACTO. Necesitamos datos precisos para evaluar el riesgo." },
+                        { t: "Ojímetro", c: false, f: "POCO PROFESIONAL. La ingeniería requiere datos, no suposiciones." }
+                    ]
+                },
+                {
+                    title: "REPARACIÓN",
+                    text: "La grieta es activa y estructural. ¿Cómo la reparamos?",
+                    options: [
+                        { t: "Inyección Epóxica", c: true, f: "CORRECTO. La resina devuelve la continuidad monolítica al muro." },
+                        { t: "Cemento y Arena", c: false, f: "ERROR. El cemento no penetra y es rígido." },
+                        { t: "Masilla plástica", c: false, f: "ERROR. Solo sirve para acabados, no soporta carga." }
+                    ]
+                }
+            ],
+            moisture: [
+                {
+                    title: "ANÁLISIS VISUAL",
+                    text: "Se observa eflorescencia (polvo blanco) en el concreto. ¿Qué es?",
+                    options: [
+                        { t: "Sales minerales lixiviadas", c: true, f: "CORRECTO. El agua arrastra sales del interior hacia afuera." },
+                        { t: "Hongos blancos", c: false, f: "INCORRECTO. Aunque parece, es salitre cristalizado." },
+                        { t: "Defecto de pintura", c: false, f: "ERROR. Es un síntoma de paso de agua interno." }
+                    ]
+                },
+                {
+                    title: "ORIGEN",
+                    text: "La mancha está en la parte baja de un muro en planta baja. Probable causa:",
+                    options: [
+                        { t: "Capilaridad (Nivel Freático)", c: true, f: "EXACTO. El agua sube desde el suelo por los poros del material." },
+                        { t: "Tubería rota en techo", c: false, f: "IMPROBABLE. La gravedad llevaría el agua hacia abajo, no subiría." },
+                        { t: "Condensación", c: false, f: "ERROR. La condensación suele ser superficial y generalizada." }
+                    ]
+                },
+                {
+                    title: "SOLUCIÓN",
+                    text: "¿Cómo detenemos la humedad por capilaridad?",
+                    options: [
+                        { t: "Pintura impermeable", c: false, f: "ERROR. La presión del agua la embombará en semanas." },
+                        { t: "Inyección de barrera química", c: true, f: "CORRECTO. Creamos un tapón químico en la base del muro." },
+                        { t: "Poner cerámica", c: false, f: "ERROR. Solo ocultas el problema, el muro se pudre detrás." }
+                    ]
+                }
+            ],
+            corrosion: [
+                {
+                    title: "DIAGNÓSTICO",
+                    text: "El concreto se desprendió dejando ver la cabilla oxidada. ¿Nombre técnico?",
+                    options: [
+                        { t: "Spalling (Desconchamiento)", c: true, f: "CORRECTO. La expansión del óxido rompió el recubrimiento." },
+                        { t: "Cangrejera", c: false, f: "ERROR. La cangrejera es un defecto de vaciado, no de deterioro." },
+                        { t: "Erosión", c: false, f: "IMPRECISO. Erosión es desgaste superficial." }
+                    ]
+                },
+                {
+                    title: "QUÍMICA",
+                    text: "¿Qué factor principal destruyó la capa pasiva del acero?",
+                    options: [
+                        { t: "Carbonatación (CO2)", c: true, f: "EXACTO. El CO2 bajó el pH del concreto, dejando el acero vulnerable." },
+                        { t: "Exceso de cemento", c: false, f: "ERROR. El cemento protege el acero." },
+                        { t: "Mucho sol", c: false, f: "IRRELEVANTE. El calor no oxida por sí solo." }
+                    ]
+                },
+                {
+                    title: "TRATAMIENTO",
+                    text: "Paso 1 para reparar:",
+                    options: [
+                        { t: "Limpieza mecánica y pasivador", c: true, f: "CORRECTO. Debemos eliminar el óxido y proteger el acero antes de tapar." },
+                        { t: "Echar mortero encima", c: false, f: "NEGLIGENCIA. El óxido seguirá creciendo y tumbará el parche." },
+                        { t: "Pintar la cabilla con aceite", c: false, f: "ERROR. El aceite impide la adherencia del concreto nuevo." }
+                    ]
+                }
+            ]
+        };
+
+        // --- LÓGICA ---
+        function showScreen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        function login() {
+            const name = document.getElementById('inputName').value;
+            if(name.length > 2) {
+                userName = name.toUpperCase();
+                document.getElementById('menu-user').innerText = "ING. " + userName;
+                document.getElementById('final-user').innerText = "ING. " + userName;
+                showScreen('screen-menu');
+            } else {
+                alert("Ingrese su nombre");
+            }
+        }
+
+        // MODO CÁMARA REAL
+        function handleRealPhoto(e) {
+            const file = e.target.files[0];
+            if(file) {
+                document.getElementById('analysis-img').src = URL.createObjectURL(file);
+                showScreen('screen-analysis');
+                
+                // Simulación de análisis IA
+                setTimeout(() => {
+                    // Randomly select a problem to simulate AI detection
+                    const types = ['crack', 'moisture'];
+                    const type = types[Math.floor(Math.random() * types.length)];
+                    const label = type === 'crack' ? "GRIETA ESTRUCTURAL" : "HUMEDAD SEVERA";
+                    
+                    document.getElementById('detected-type').innerText = label;
+                    
+                    setTimeout(() => {
+                        startQuiz(type);
+                    }, 1500);
+                }, 2500);
+            }
+        }
+
+        // MODO QUIZ
+        function startQuiz(type) {
+            currentQuestions = DB[type]; // Cargar preguntas del tema
+            qIndex = 0;
+            lifelineUsed = false;
+            document.getElementById('lifeline-btn').classList.remove('used');
+            loadQuestion();
+            showScreen('screen-quiz');
+        }
+
+        function loadQuestion() {
+            const q = currentQuestions[qIndex];
+            document.getElementById('q-counter').innerText = `PREGUNTA ${qIndex + 1}/${currentQuestions.length}`;
+            document.getElementById('q-title').innerText = q.title;
+            document.getElementById('q-text').innerText = q.text;
+
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+
+            q.options.forEach(opt => {
+                const btn = document.createElement('div');
+                btn.className = 'option-btn';
+                btn.innerHTML = `<div>➤</div> <div>${opt.t}</div>`;
+                btn.onclick = () => checkAnswer(opt);
+                btn.dataset.correct = opt.c; // Guardar si es correcta para el comodín
+                container.appendChild(btn);
+            });
+        }
+
+        // COMODÍN (50/50)
+        function useLifeline() {
+            if(lifelineUsed) return;
+            
+            const btns = Array.from(document.querySelectorAll('.option-btn'));
+            const wrongs = btns.filter(b => b.dataset.correct === "false");
+            
+            // Ocultar uno incorrecto al azar
+            if(wrongs.length > 0) {
+                wrongs[0].style.opacity = "0.2";
+                wrongs[0].style.pointerEvents = "none";
+                wrongs[0].innerText = "[ DATOS DESCARTADOS POR IA ]";
+            }
+
+            lifelineUsed = true;
+            document.getElementById('lifeline-btn').classList.add('used');
+            if(navigator.vibrate) navigator.vibrate(200);
+        }
+
+        function checkAnswer(opt) {
+            if(opt.c) {
+                document.getElementById('success-msg').innerText = opt.f;
+                document.getElementById('overlay-success').style.display = 'flex';
+                confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
+            } else {
+                document.getElementById('error-msg').innerText = opt.f;
+                document.getElementById('overlay-error').style.display = 'flex';
+                if(navigator.vibrate) navigator.vibrate(500);
+            }
+        }
+
+        function closeOverlay(id) { document.getElementById(id).style.display = 'none'; }
+
+        function nextQuestion() {
+            closeOverlay('overlay-success');
+            if (qIndex < currentQuestions.length - 1) {
+                qIndex++;
+                loadQuestion();
+            } else {
+                showScreen('screen-final');
+                confetti({ particleCount: 200, spread: 100 });
+            }
+        }
+    </script>
+</body>
+</html>

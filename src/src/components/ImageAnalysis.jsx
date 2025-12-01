@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { BsUpload, BsImage, BsArrowLeftCircle, BsEye, BsDownload, BsBox, BsTag, BsCart, BsStarFill } from 'react-icons/bs';
+import { BsUpload, BsImage, BsArrowLeftCircle, BsEye, BsDownload, BsBox, BsTag, BsCart, BsStarFill, BsArrowRight } from 'react-icons/bs';
 import './ImageAnalysis.css';
 import { useTranslation } from '../hack4edu/hooks_useTranslation';
 
-const ImageAnalysis = ({ onBack }) => {
+const ImageAnalysis = ({ onBack, onNavigateToMaterials }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -224,11 +224,20 @@ const ImageAnalysis = ({ onBack }) => {
       <div className="analysis-content">
         <div className="upload-section">
           <div className="upload-card">
+            <div className="upload-header">
+              <h3 className="upload-title">
+                <BsImage className="icon" /> {t('image.upload.title', 'Cargar Imagen')}
+              </h3>
+              <p className="upload-description">
+                {t('image.upload.description', 'Selecciona una imagen para analizar con IA')}
+              </p>
+            </div>
             <div className="upload-area">
               <input type="file" id="image-upload" accept="image/*" onChange={handleFileSelect} style={{ display: 'none' }} />
               <label htmlFor="image-upload" className="upload-label">
                 <BsUpload className="upload-icon" />
-                <span>{t('common.select_image', 'Select Image')}</span>
+                <span className="upload-text-main">{t('common.select_image', 'Seleccionar Imagen')}</span>
+                <span className="upload-text-hint">{t('image.upload.hint', 'Haz clic aquí o arrastra una imagen')}</span>
               </label>
             </div>
 
@@ -303,6 +312,33 @@ const ImageAnalysis = ({ onBack }) => {
               ) : (
                 <div className="no-detections">
                   <p>{t('image.no_detections', 'No objects detected in the image')}</p>
+                </div>
+              )}
+
+              {results.detections && results.detections.length > 0 && 
+               results.detections.some(d => d.label !== 'Persona' && d.label !== 'Person') && (
+                <div className="materials-action-section">
+                  <button 
+                    className="go-to-materials-button"
+                    onClick={() => {
+                      const pathologies = results.detections
+                        .filter(d => d.label !== 'Persona' && d.label !== 'Person')
+                        .map(d => ({
+                          label: d.label,
+                          confidence: d.confidence
+                        }));
+                      if (onNavigateToMaterials) {
+                        onNavigateToMaterials(pathologies, preview);
+                      }
+                    }}
+                  >
+                    <BsBox className="button-icon" />
+                    {t('image.go_to_materials', 'Ir a Gestión de Materiales')}
+                    <BsArrowRight className="button-icon" />
+                  </button>
+                  <p className="materials-hint">
+                    {t('image.materials_hint', 'Agrega materiales basados en las patologías detectadas')}
+                  </p>
                 </div>
               )}
             </div>

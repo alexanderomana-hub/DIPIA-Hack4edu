@@ -211,28 +211,46 @@ def get_materials():
         conn = sqlite3.connect(DATABASE)
         cursor = conn.cursor()
         
-        cursor.execute("SELECT * FROM materials WHERE user_id = ? ORDER BY created_at DESC", (user_id,))
+        # Obtener nombres de columnas para mapeo correcto
+        cursor.execute("PRAGMA table_info(materials)")
+        columns_info = cursor.fetchall()
+        column_names = [col[1] for col in columns_info]
+        print(f"🔍 Columnas en materials: {column_names}")
+        
+        # Construir SELECT con nombres explícitos para evitar problemas de orden
+        cursor.execute("""
+            SELECT id, name, supplier, price, unit, category, pathology_related, 
+                   image_url, is_favorite, usage_count, user_id, created_at 
+            FROM materials 
+            WHERE user_id = ? 
+            ORDER BY created_at DESC
+        """, (user_id,))
         materials = cursor.fetchall()
         
         conn.close()
         
         materials_list = []
         for material in materials:
-            materials_list.append({
+            material_dict = {
                 "id": material[0],
                 "name": material[1],
                 "supplier": material[2],
                 "price": material[3],
                 "unit": material[4],
-                "category": material[5] if len(material) > 5 else 'General',
-                "pathology_related": material[6] if len(material) > 6 else '',
-                "image_url": material[7] if len(material) > 7 else '',
-                "is_favorite": bool(material[8]) if len(material) > 8 else False,
-                "usage_count": material[9] if len(material) > 9 else 0,
-                "created_at": material[10] if len(material) > 10 else (material[7] if len(material) > 7 else material[6])
-            })
+                "category": material[5] if material[5] else 'General',
+                "pathology_related": material[6] if material[6] else '',
+                "image_url": material[7] if material[7] else '',
+                "is_favorite": bool(material[8]) if material[8] is not None else False,
+                "usage_count": material[9] if material[9] is not None else 0,
+                "created_at": material[11] if len(material) > 11 else None
+            }
+            materials_list.append(material_dict)
+            # Debug: imprimir materiales de categoría Impermeabilización
+            if material_dict['category'] == 'Impermeabilización':
+                print(f"🔍 Material Impermeabilización encontrado: {material_dict['name']}, image_url: {material_dict['image_url']}")
         
         print(f"✅ Materiales encontrados: {len(materials_list)}")
+        print(f"🔍 Categorías presentes: {set(m['category'] for m in materials_list)}")
         return jsonify({"success": True, "materials": materials_list})
     
     except Exception as e:
@@ -270,23 +288,43 @@ def add_material():
         print(f"  - pathology_related: {pathology_related}")
         print(f"  - image_url: {image_url}")
         
-        if not all([name, supplier, price, unit]):
+        # Validar campos requeridos
+        if not name or not supplier or not price or not unit:
             print("❌ Faltan campos requeridos")
-            return jsonify({"success": False, "error": "Todos los campos son requeridos"}), 400
+            missing = []
+            if not name: missing.append('name')
+            if not supplier: missing.append('supplier')
+            if not price: missing.append('price')
+            if not unit: missing.append('unit')
+            return jsonify({"success": False, "error": f"Faltan campos requeridos: {', '.join(missing)}"}), 400
+        
+        # Validar que price sea un número válido
+        try:
+            price_float = float(price)
+            if price_float < 0:
+                return jsonify({"success": False, "error": "El precio debe ser mayor o igual a 0"}), 400
+        except (ValueError, TypeError):
+            return jsonify({"success": False, "error": "El precio debe ser un número válido"}), 400
         
         conn = sqlite3.connect(DATABASE)
         cursor = conn.cursor()
         
-        cursor.execute(
-            "INSERT INTO materials (name, supplier, price, unit, category, pathology_related, image_url, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-            (name, supplier, price, unit, category, pathology_related, image_url, user_id)
-        )
-        
-        conn.commit()
-        conn.close()
-        
-        print(f"✅ Material guardado en la base de datos: {name}")
-        return jsonify({"success": True, "message": "Material agregado exitosamente"})
+        try:
+            cursor.execute(
+                "INSERT INTO materials (name, supplier, price, unit, category, pathology_related, image_url, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                (name.strip(), supplier.strip(), price_float, unit.strip(), category or 'General', pathology_related or '', image_url or '', user_id)
+            )
+            
+            conn.commit()
+            material_id = cursor.lastrowid
+            print(f"✅ Material guardado en la base de datos: {name} (ID: {material_id})")
+            return jsonify({"success": True, "message": "Material agregado exitosamente", "id": material_id})
+        except sqlite3.Error as e:
+            conn.rollback()
+            print(f"❌ Error de base de datos: {e}")
+            return jsonify({"success": False, "error": f"Error al guardar en la base de datos: {str(e)}"}), 500
+        finally:
+            conn.close()
     
     except Exception as e:
         print(f"❌ Error al guardar material: {e}")
