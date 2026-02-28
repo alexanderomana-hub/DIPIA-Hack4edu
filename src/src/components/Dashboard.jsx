@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BsCameraVideo, BsBox, BsImage, BsGear, BsArrowRightCircle, BsBook, BsShieldCheck, BsGraphUp, BsBuilding, BsClipboardCheck } from 'react-icons/bs';
+import { BsCameraVideo, BsBox, BsImage, BsGear, BsArrowRightCircle, BsBook, BsShieldCheck, BsGraphUp, BsBuilding, BsClipboardCheck, BsQrCodeScan } from 'react-icons/bs';
 import ImageAnalysisExtended from '../hack4edu/ImageAnalysisExtended.jsx';
 import LanguageSelector from '../hack4edu/LanguageSelector.jsx';
 import DroneViewer from './DroneViewer';
@@ -97,6 +97,54 @@ const Dashboard = ({ onLogout }) => {
                     <span className="stat-value">24/7</span>
                     <span className="stat-label">{t('home.stats.support', 'Soporte')}</span>
                   </div>
+                </div>
+              </div>
+              {/* QR Code Card */}
+              <div style={{
+                background: '#1a1a1a',
+                border: '1px solid #333',
+                borderRadius: '8px',
+                padding: '15px',
+                margin: '20px 0',
+                textAlign: 'center',
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '10px',
+                  marginBottom: '10px'
+                }}>
+                  <BsQrCodeScan style={{ color: '#FFD700', fontSize: '24px' }} />
+                  <h3 style={{ 
+                    color: '#FFD700',
+                    margin: 0,
+                    fontSize: '1.1rem',
+                    fontWeight: 600
+                  }}> APP DE CAMPO</h3>
+                </div>
+                <p style={{ 
+                  color: '#ccc',
+                  margin: '10px 0 15px',
+                  fontSize: '0.9rem'
+                }}>Escanea para probar la simulación móvil.</p>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'center'
+                }}>
+                  <img 
+                    src="/qr-evento.png" 
+                    alt="Código QR para la app móvil" 
+                    style={{
+                      width: '150px',
+                      height: '150px',
+                      border: '1px solid #444',
+                      borderRadius: '4px',
+                      padding: '5px',
+                      backgroundColor: 'white'
+                    }} 
+                  />
                 </div>
               </div>
             </div>

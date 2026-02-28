@@ -207,10 +207,13 @@ class CameraApp:
                 self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, width)
                 self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
                 self.camera.set(cv2.CAP_PROP_FPS, fps)
-                self.camera.set(cv2.CAP_PROP_BRIGHTNESS, 0.5)
-                self.camera.set(cv2.CAP_PROP_CONTRAST, 0.5)
-                self.camera.set(cv2.CAP_PROP_SATURATION, 0.5)
-                self.camera.set(cv2.CAP_PROP_AUTO_EXPOSURE, 0.25)  # Control de exposición
+                # Ajustes de color mejorados
+                self.camera.set(cv2.CAP_PROP_BRIGHTNESS, 0.6)  # Aumentar brillo
+                self.camera.set(cv2.CAP_PROP_CONTRAST, 0.7)    # Aumentar contraste
+                self.camera.set(cv2.CAP_PROP_SATURATION, 1.0)   # Máxima saturación para colores vivos
+                self.camera.set(cv2.CAP_PROP_GAMMA, 1.0)        # Ajuste de gamma
+                self.camera.set(cv2.CAP_PROP_AUTO_EXPOSURE, 0.75)  # Reducir exposición automática
+                self.camera.set(cv2.CAP_PROP_AUTO_WB, 1)        # Balance de blancos automático
                 self.camera.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))  # Mejor compresión
                 
                 print(f"📹 Camera configured: {width}x{height} @ {fps}fps")
